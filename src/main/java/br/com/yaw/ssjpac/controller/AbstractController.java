@@ -111,7 +111,6 @@ public abstract class AbstractController implements ActionListener, WindowListen
 		return actions.get(actionCommand);
 	}
 	
-	@Override
 	public void actionPerformed(ActionEvent actionEvent) {
 		try {
 			AbstractAction action = getAction(actionEvent);

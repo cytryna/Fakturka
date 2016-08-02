@@ -31,8 +31,7 @@ import br.com.yaw.ssjpac.validation.Validator;
  *  As dependências são resolvidas pelo Spring, através da <strong>Injeção de Dependência</strong> c/ a anotação <code>@Autowired</code>.
  * </p>
  * 
- * @see br.com.yaw.sjpac.controller.PersistenceController
- * 
+ *
  * @author YaW Tecnologia
  */
 @Component
@@ -70,7 +69,6 @@ public class IncluirMercadoriaController extends AbstractController {
 			ConditionalAction.build()
 				.addConditional(new BooleanExpression() {
 					
-					@Override
 					public boolean conditional() {
 						Mercadoria m = frame.getMercadoria();
 						String msg = validador.validate(m);

@@ -27,8 +27,7 @@ import br.com.yaw.ssjpac.ui.BuscaMercadoriaFrame;
  *  As dependências são resolvidas pelo Spring, através da <strong>Injeção de Dependência</strong> c/ a anotação <code>@Autowired</code>.
  * </p>
  * 
- * @see br.com.yaw.sjpac.controller.PersistenceController
- * 
+ *
  * @author YaW Tecnologia
  */
 @Component
@@ -43,6 +42,7 @@ public class BuscarMercadoriaController extends AbstractController {
 	@Autowired
 	public BuscarMercadoriaController(ListaMercadoriaController parent) {
 		super(parent);
+		System.err.println("radek BuscarMercadoriaController");
 	}
 	
 	@PostConstruct
