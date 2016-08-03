@@ -11,9 +11,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import br.com.yaw.ssjpac.model.Article;
 import org.springframework.stereotype.Component;
-
-import br.com.yaw.ssjpac.model.Mercadoria;
 
 /**
  * Tela principal da aplicação. Apresenta uma lista com as mercadorias cadastradas. 
@@ -41,7 +40,7 @@ public class ListArticleFrame extends JFrame {
 	private JMenuItem menuSobre;
 	
 	public ListArticleFrame() {
-		setTitle("Lista de Mercadoria");
+		setTitle("Lista de Article");
 		
 		inicializaComponentes();
 		adicionaComponentes();
@@ -100,11 +99,11 @@ public class ListArticleFrame extends JFrame {
 		return bFindMercadoria;
 	}
 	
-	public void refreshTable(List<Mercadoria> mercadorias) {
-		tabela.reload(mercadorias);
+	public void refreshTable(List<Article> articles) {
+		tabela.reload(articles);
 	}
 	
-	public Mercadoria getSelectedMercadoria() {
+	public Article getSelectedMercadoria() {
 		return tabela.getMercadoriaSelected();
 	}
 	

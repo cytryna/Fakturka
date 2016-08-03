@@ -1,17 +1,17 @@
 package br.com.yaw.ssjpac.event;
 
-import br.com.yaw.ssjpac.model.Mercadoria;
+import br.com.yaw.ssjpac.model.Article;
 
 /**
- * Evento deve ser gerado durante a inclusão de uma <code>Mercadoria</code>.
+ * Evento deve ser gerado durante a inclusão de uma <code>Article</code>.
  * 
- * <p>Recebe a referência da <code>Mercadoria</code> que foi incluida.</p>
+ * <p>Recebe a referência da <code>Article</code> que foi incluida.</p>
  * 
  * @author YaW Tecnologia
  */
-public class IncluirMercadoriaEvent extends AbstractEvent<Mercadoria> {
+public class IncluirMercadoriaEvent extends AbstractEvent<Article> {
 	
-	public IncluirMercadoriaEvent(Mercadoria m) {
+	public IncluirMercadoriaEvent(Article m) {
 		super(m);
 	}
 }

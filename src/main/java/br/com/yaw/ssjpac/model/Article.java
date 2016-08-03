@@ -18,7 +18,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * 
  * <p>A <code>mercadoria</code> é um objeto persistido no banco de dados, por isso a classificamos como <strong>Entidade</strong>.</p>
  * 
- * <p>Por se tratar de uma Entidade persistente, a <code>Mercadoria</code> utiliza as anotações <code>JPA</code> para definir o mapeamento <code>ORM</code>.
+ * <p>Por se tratar de uma Entidade persistente, a <code>Article</code> utiliza as anotações <code>JPA</code> para definir o mapeamento <code>ORM</code>.
  * 
  * <p>As funcionalidades desse sistema demonstração são concentradas no cadastro (CRUD) de mercadorias.</p>
  * 
@@ -28,7 +28,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  * </p>
  * 
  * <p>
- *  Outra característica dessa classe, é o uso de anotações do Bean Validations para validar o estado (dados) da <code>Mercadoria</code>.
+ *  Outra característica dessa classe, é o uso de anotações do Bean Validations para validar o estado (dados) da <code>Article</code>.
  *  Bean Validations (JSR 303) é uma especificação Java para habilitar a validação de dados via o uso de anotações. O principal provider
  *  dessa API é o <code>Hibernate Validator</code>.
  * </p>
@@ -37,7 +37,7 @@ import org.springframework.data.jpa.domain.AbstractPersistable;
  */
 @Entity
 @Table(name="mercadoria")
-public class Mercadoria extends AbstractPersistable<Integer> {
+public class Article extends AbstractPersistable<Integer> {
 	
 	@NotNull @Size(min=5, max=200)
 	private String nome;
@@ -50,16 +50,16 @@ public class Mercadoria extends AbstractPersistable<Integer> {
 	@NotNull @Min(value=1)
 	private Double preco;
 	
-	/** Atributo utilizado para controle <code>lock</code> (otimista) da <code>JPA</code> para cada registro (objeto) Mercadoria. */
+	/** Atributo utilizado para controle <code>lock</code> (otimista) da <code>JPA</code> para cada registro (objeto) Article. */
 	@Version
 	private Integer version;
 	
 	private static final NumberFormat numberFmt = NumberFormat.getNumberInstance(new Locale("pt","BR"));
 	
-	public Mercadoria(){
+	public Article(){
 	}
 	
-	public Mercadoria(Integer id, String nome, String descricao, Integer quantidade, Double preco, Integer version) {
+	public Article(Integer id, String nome, String descricao, Integer quantidade, Double preco, Integer version) {
 		setId(id);
 		this.nome = nome;
 		this.descricao = descricao;

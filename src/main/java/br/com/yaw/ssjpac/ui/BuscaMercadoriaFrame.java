@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 
 
 /**
- * Tela utilizada para realizar a pesquisa de <code>Mercadoria</code>
+ * Tela utilizada para realizar a pesquisa de <code>Article</code>
  * com filtro no campo <code>nome</code>. 
  * 
  * <p>

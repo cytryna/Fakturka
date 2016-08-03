@@ -7,6 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.swing.SwingUtilities;
 
+import br.com.yaw.ssjpac.model.Article;
 import br.com.yaw.ssjpac.ui.ListArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -18,7 +19,6 @@ import br.com.yaw.ssjpac.event.AtualizarListarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.BuscarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
-import br.com.yaw.ssjpac.model.Mercadoria;
 import br.com.yaw.ssjpac.ui.AboutFrame;
 
 @Component
@@ -74,7 +74,7 @@ public class ListArticleController extends AbstractController {
 		this.frame.getTable().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
 				if (event.getClickCount() == 2) {
-					Mercadoria m = frame.getTable().getMercadoriaSelected();
+					Article m = frame.getTable().getMercadoriaSelected();
 					if (m != null) {
 						includeArticleController.show(m);
 					}
@@ -116,7 +116,7 @@ public class ListArticleController extends AbstractController {
 			public void handleEvent(final BuscarMercadoriaEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						List<Mercadoria> list = event.getTarget();
+						List<Article> list = event.getTarget();
 						if (list != null) {
 							frame.refreshTable(list);
 						}

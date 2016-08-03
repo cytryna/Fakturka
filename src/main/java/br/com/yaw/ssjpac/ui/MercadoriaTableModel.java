@@ -3,10 +3,11 @@ package br.com.yaw.ssjpac.ui;
 import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
-import br.com.yaw.ssjpac.model.Mercadoria;
+
+import br.com.yaw.ssjpac.model.Article;
 
 /**
- * Define um TableModel para entidade <code>Mercadoria</code>, considerando as colunas:
+ * Define um TableModel para entidade <code>Article</code>, considerando as colunas:
  * <ul>
  *   <li>Nome;</li>
  *   <li>Descrição;</li>
@@ -18,7 +19,7 @@ import br.com.yaw.ssjpac.model.Mercadoria;
  */
 public class MercadoriaTableModel extends AbstractTableModel {
 
-	private List<Mercadoria> mercadorias;
+	private List<Article> articles;
 	
 	private String[] colNomes = { "Nome", "Descricao", "Preco", "Quantidade" };
 	
@@ -26,8 +27,8 @@ public class MercadoriaTableModel extends AbstractTableModel {
 	
 	public MercadoriaTableModel(){}
 	
-	public void reload(List<Mercadoria> mercadorias) {
-		this.mercadorias = mercadorias;
+	public void reload(List<Article> articles) {
+		this.articles = articles;
 		//atualiza o componente na tela
 		fireTableDataChanged();
 	}
@@ -49,22 +50,22 @@ public class MercadoriaTableModel extends AbstractTableModel {
 
 	@Override
 	public int getRowCount() {
-		if (mercadorias == null){
+		if (articles == null){
 			return 0;
 		}
-		return mercadorias.size();
+		return articles.size();
 	}
 
 	@Override
 	public Object getValueAt(int linha, int coluna) {
-		Mercadoria m = mercadorias.get(linha);
+		Article m = articles.get(linha);
 		switch (coluna) {
 		case 0:
 			return m.getNome();
 		case 1:
 			return m.getDescricao();
 		case 2:
-			return Mercadoria.convertPrecoToString(m.getPreco());
+			return Article.convertPrecoToString(m.getPreco());
 		case 3:
 			return m.getQuantidade();
 		default:
@@ -77,8 +78,8 @@ public class MercadoriaTableModel extends AbstractTableModel {
 		return false;
 	}
 	
-	public Mercadoria getMercadoriaAt(int index) {
-		return mercadorias.get(index);
+	public Article getMercadoriaAt(int index) {
+		return articles.get(index);
 	}
 	
 }

@@ -13,17 +13,16 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import br.com.yaw.ssjpac.model.Article;
 import org.springframework.stereotype.Component;
-
-import br.com.yaw.ssjpac.model.Mercadoria;
 
 
 /**
- * Tela para incluir/editar o registro da <code>Mercadoria</code>.
+ * Tela para incluir/editar o registro da <code>Article</code>.
  * 
  * <p>
- *  Essa tela trabalha em modo inclusão ou edição de <code>Mercadoria</code>.
- *  Em edição é possível acionar a funcionalidade para remover <code>Mercadoria</code>.
+ *  Essa tela trabalha em modo inclusão ou edição de <code>Article</code>.
+ *  Em edição é possível acionar a funcionalidade para remover <code>Article</code>.
  * </p>
  * 
  * <p>
@@ -132,7 +131,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		return painel;
 	}
 	
-	private Mercadoria loadMercadoriaFromPanel() {
+	private Article loadMercadoriaFromPanel() {
 		String nome = null;
 		if (!tfNome.getText().trim().isEmpty()) {
 			nome = tfNome.getText().trim();
@@ -154,7 +153,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		Double preco = null;
 		try {
 			if (!tfPreco.getText().trim().isEmpty()) {
-				preco = Mercadoria.formatStringToPreco(tfPreco.getText());
+				preco = Article.formatStringToPreco(tfPreco.getText());
 			}
 		} catch (ParseException nex) {
 			throw new RuntimeException("Erro durante a conversão do campo preço (Double).\nConteudo inválido!");
@@ -170,7 +169,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 			version = Integer.parseInt(tfVersion.getText());
 		} catch (Exception nex) {}
 		
-		return new Mercadoria(id, nome, descricao, quantidade, preco, version);
+		return new Article(id, nome, descricao, quantidade, preco, version);
 	}
 	
 	public void resetForm() {
@@ -183,7 +182,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		bExcluir.setVisible(false);
 	}
 	
-	private void populaTextFields(Mercadoria m){
+	private void populaTextFields(Article m){
 		tfId.setValue(m.getId());
 		tfNome.setText(m.getNome());
 		tfDescricao.setText(m.getDescricao());
@@ -193,10 +192,10 @@ public class IncluirMercadoriaFrame extends JFrame {
 	}
 	
 	/**
-	 * Limpa e carrega os campos da tela de acordo com objeto <code>Mercadoria</code>.
-	 * @param m referência da <code>Mercadoria</code> que deve ser apresentada na tela.
+	 * Limpa e carrega os campos da tela de acordo com objeto <code>Article</code>.
+	 * @param m referência da <code>Article</code> que deve ser apresentada na tela.
 	 */
-	public void setMercadoria(Mercadoria m){
+	public void setMercadoria(Article m){
 		resetForm();
 		if (m != null) {
 			populaTextFields(m);
@@ -205,14 +204,14 @@ public class IncluirMercadoriaFrame extends JFrame {
 	}
 	
 	/**
-	 * @return uma nova instância de <code>Mercadoria</code> com os dados preenchidos do campos na tela.
+	 * @return uma nova instância de <code>Article</code> com os dados preenchidos do campos na tela.
 	 */
-	public Mercadoria getMercadoria() {
+	public Article getMercadoria() {
 		return loadMercadoriaFromPanel();
 	}
 	
 	/**
-	 * @return o identificador da <code>Mercadoria</code> em edição. Retorna <code>null</code> em modo de inclusão.
+	 * @return o identificador da <code>Article</code> em edição. Retorna <code>null</code> em modo de inclusão.
 	 */
 	public Integer getMercadoriaId() {
 		try {

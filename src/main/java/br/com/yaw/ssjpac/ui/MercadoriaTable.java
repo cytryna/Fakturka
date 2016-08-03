@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import br.com.yaw.ssjpac.model.Mercadoria;
+import br.com.yaw.ssjpac.model.Article;
 
 /**
- * <code>JTable</code> com operações customizadas para entidade <code>Mercadoria</code>.
+ * <code>JTable</code> com operações customizadas para entidade <code>Article</code>.
  * 
  * @see br.com.yaw.sjc.ui.MercadoriaTableModel
  * 
@@ -23,9 +23,9 @@ public class MercadoriaTable extends JTable {
 	}
 	
 	/**
-	 * @return <code>Mercadoria</code> selecionada na tabela. Caso a tabela não tenha elementos, retorna <code>null</code>.
+	 * @return <code>Article</code> selecionada na tabela. Caso a tabela não tenha elementos, retorna <code>null</code>.
 	 */
-	public Mercadoria getMercadoriaSelected() {
+	public Article getMercadoriaSelected() {
 		int i = getSelectedRow();
 		if (i < 0) {
 			return null;
@@ -34,10 +34,10 @@ public class MercadoriaTable extends JTable {
 	}
 	
 	/**
-	 * Recarrega a tabela de <code>Mercadoria</code> com a lista <code>mercadorias</code>.
-	 * @param mercadorias <code>List</code> com os elementos <code>Mercadoria</code> que devem ser exibidos na tabela.
+	 * Recarrega a tabela de <code>Article</code> com a lista <code>articles</code>.
+	 * @param articles <code>List</code> com os elementos <code>Article</code> que devem ser exibidos na tabela.
 	 */
-	public void reload(List<Mercadoria> mercadorias) {
-		modelo.reload(mercadorias);
+	public void reload(List<Article> articles) {
+		modelo.reload(articles);
 	}
 }
