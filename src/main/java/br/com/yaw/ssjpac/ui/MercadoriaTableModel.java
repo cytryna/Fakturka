@@ -61,9 +61,9 @@ public class MercadoriaTableModel extends AbstractTableModel {
 		Article m = articles.get(linha);
 		switch (coluna) {
 		case 0:
-			return m.getNome();
+			return m.getName();
 		case 1:
-			return m.getDescricao();
+			return m.getDescription();
 		case 2:
 			return Article.convertPrecoToString(m.getPreco());
 		case 3:

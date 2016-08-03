@@ -37,7 +37,7 @@ public class FindArticleController extends AbstractController {
 			@Override
 			public void action() {
 				if (frame.getText().length() > 0) {
-					list = dao.getMercadoriasByNome(frame.getText().concat("%"));
+					list = dao.getArticleByName(frame.getText().concat("%"));
 				}
 			}
 			

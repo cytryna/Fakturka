@@ -184,8 +184,8 @@ public class IncluirMercadoriaFrame extends JFrame {
 	
 	private void populaTextFields(Article m){
 		tfId.setValue(m.getId());
-		tfNome.setText(m.getNome());
-		tfDescricao.setText(m.getDescricao());
+		tfNome.setText(m.getName());
+		tfDescricao.setText(m.getDescription());
 		tfQuantidade.setValue(m.getQuantidade());
 		tfPreco.setText(m.getPrecoFormatado());
 		tfVersion.setValue(m.getVersion());
