@@ -10,7 +10,7 @@ import org.springframework.transaction.annotation.Transactional;
 import br.com.yaw.ssjpac.action.AbstractAction;
 import br.com.yaw.ssjpac.action.BooleanExpression;
 import br.com.yaw.ssjpac.action.ConditionalAction;
-import br.com.yaw.ssjpac.dao.MercadoriaDAO;
+import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
 import br.com.yaw.ssjpac.model.Mercadoria;
@@ -21,8 +21,8 @@ import br.com.yaw.ssjpac.validation.Validator;
  * Define a <code>Controller</code> responsável por gerir a tela de inclusão/edição de <code>Mercadoria</code>.
  * 
  * <p>
- *  <code>IncluirMercadoriaController</code> é mapeada como <code>@Component</code> do Spring.
- *  Dessa forma uma instância de <code>IncluirMercadoriaController</code> pode ser criada e gerenciada
+ *  <code>IncludeArticleController</code> é mapeada como <code>@Component</code> do Spring.
+ *  Dessa forma uma instância de <code>IncludeArticleController</code> pode ser criada e gerenciada
  *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
  * </p>
  * 
@@ -35,7 +35,7 @@ import br.com.yaw.ssjpac.validation.Validator;
  * @author YaW Tecnologia
  */
 @Component
-public class IncluirMercadoriaController extends AbstractController {
+public class IncludeArticleController extends AbstractController {
 
 	@Autowired
 	private IncluirMercadoriaFrame frame;
@@ -44,15 +44,15 @@ public class IncluirMercadoriaController extends AbstractController {
 	private Validator<Mercadoria> validador;
 	
 	@Autowired
-	private MercadoriaDAO dao;
+	private ArticleDAO dao;
 	
 	@Autowired
-	public IncluirMercadoriaController(ListaMercadoriaController parent) {
+	public IncludeArticleController(ListArticleController parent) {
 		super(parent);
 	}
 
 	/**
-	 * Método executado pelo <code>Spring</code>, depois de criar a instância de <code>IncluirMercadoriaController</code>.
+	 * Método executado pelo <code>Spring</code>, depois de criar a instância de <code>IncludeArticleController</code>.
 	 * 
 	 * <p>Faz o registro das ações.</p>
 	 */

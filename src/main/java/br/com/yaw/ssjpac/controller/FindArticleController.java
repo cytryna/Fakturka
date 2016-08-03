@@ -8,41 +8,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.yaw.ssjpac.action.AbstractAction;
-import br.com.yaw.ssjpac.dao.MercadoriaDAO;
+import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.BuscarMercadoriaEvent;
 import br.com.yaw.ssjpac.model.Mercadoria;
 import br.com.yaw.ssjpac.ui.BuscaMercadoriaFrame;
 
-/**
- * Define a <code>Controller</code> responsável por gerir a tela de Busca de <code>Mercadoria</code> pelo campo <code>nome</code>.
- * 
- * <p>
- *  <code>BuscarMercadoriaController</code> é mapeada como <code>@Component</code> do Spring.
- *  Dessa forma uma instância de <code>BuscarMercadoriaController</code> pode ser criada e gerenciada
- *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
- * </p>
- * 
- * <p>
- *  Essa <code>Controller</code> depende de outros componentes da camada <code>Model</code> (DAO) e <code>View</code> (tela).
- *  As dependências são resolvidas pelo Spring, através da <strong>Injeção de Dependência</strong> c/ a anotação <code>@Autowired</code>.
- * </p>
- * 
- *
- * @author YaW Tecnologia
- */
 @Component
-public class BuscarMercadoriaController extends AbstractController {
+public class FindArticleController extends AbstractController {
 
 	@Autowired
 	private BuscaMercadoriaFrame frame;
 	
 	@Autowired
-	private MercadoriaDAO dao;
-	
+	private ArticleDAO dao;
+
 	@Autowired
-	public BuscarMercadoriaController(ListaMercadoriaController parent) {
+	public FindArticleController(ListArticleController parent) {
 		super(parent);
-		System.err.println("radek BuscarMercadoriaController");
 	}
 	
 	@PostConstruct

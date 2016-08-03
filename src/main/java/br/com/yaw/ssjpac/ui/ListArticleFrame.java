@@ -21,15 +21,15 @@ import br.com.yaw.ssjpac.model.Mercadoria;
  * <p>A partir dessa tela é possível criar/editar ou pesquisar mercadoria.</p>
  * 
  * <p>
- *  <code>ListaMercadoriasFrame</code> é mapeada como <code>@Component</code> do Spring. 
- *  Dessa forma uma instância de <code>ListaMercadoriasFrame</code> pode ser criada e gerenciada
+ *  <code>ListArticleFrame</code> é mapeada como <code>@Component</code> do Spring.
+ *  Dessa forma uma instância de <code>ListArticleFrame</code> pode ser criada e gerenciada
  *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
  * </p>
  * 
  * @author YaW Tecnologia
  */
 @Component
-public class ListaMercadoriasFrame extends JFrame {
+public class ListArticleFrame extends JFrame {
 	
 	private MercadoriaTable tabela;
 	private JScrollPane scrollPane;
@@ -40,7 +40,7 @@ public class ListaMercadoriasFrame extends JFrame {
 	private MenuF1 menuAjuda;
 	private JMenuItem menuSobre;
 	
-	public ListaMercadoriasFrame() {
+	public ListArticleFrame() {
 		setTitle("Lista de Mercadoria");
 		
 		inicializaComponentes();

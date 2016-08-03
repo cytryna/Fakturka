@@ -23,24 +23,11 @@ import javax.swing.LayoutStyle;
 
 import org.springframework.stereotype.Component;
 
-/**
- * Tela <i>Sobre</i>. Apresenta detalhes da aplicação.
- * 
- * <p>
- *  <code>SobreFrame</code> é mapeada como <code>@Component</code> do Spring. 
- *  Dessa forma uma instância de <code>SobreFrame</code> pode ser criada e gerenciada
- *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
- * </p>
- * 
- * @see br.com.yaw.sjc.util.ApplicationProperties
- * 
- * @author YaW Tecnologia
- */
 @Component
-public class SobreFrame extends JFrame {
+public class AboutFrame extends JFrame {
 
-	public SobreFrame(){
-		setTitle("Sobre a aplicação");
+	public AboutFrame(){
+		setTitle("O aplikacji");
 		setSize(730,230);
 		setLocationRelativeTo(null);
 		setResizable(false);
@@ -59,11 +46,11 @@ public class SobreFrame extends JFrame {
         painelLabels.setBorder(BorderFactory.createEtchedBorder());
         GroupLayout panelLayout = new GroupLayout(painelLabels);
         
-        JLabel l1 = new JLabel("Aplicação:");
-        JLabel l2 = new JLabel("Versão:");
-        JLabel l3 = new JLabel("Desenvolvido por:");
-        JLabel l4 = new JLabel("Build");
-        JLabel l5 = new JLabel("Site:");
+        JLabel l1 = new JLabel("Aplikacja:");
+        JLabel l2 = new JLabel("Wersja:");
+        JLabel l3 = new JLabel("Opracowany przez:");
+        JLabel l4 = new JLabel("Zbudowany");
+        JLabel l5 = new JLabel("Strona:");
         
         JLabel lTitulo = new JLabel(getTitulo());
         JLabel lVersao = new JLabel(getVersao());

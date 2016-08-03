@@ -7,71 +7,46 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.swing.SwingUtilities;
 
+import br.com.yaw.ssjpac.ui.ListArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import br.com.yaw.ssjpac.action.AbstractAction;
-import br.com.yaw.ssjpac.dao.MercadoriaDAO;
+import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.AbstractEventListener;
 import br.com.yaw.ssjpac.event.AtualizarListarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.BuscarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
 import br.com.yaw.ssjpac.model.Mercadoria;
-import br.com.yaw.ssjpac.ui.ListaMercadoriasFrame;
-import br.com.yaw.ssjpac.ui.SobreFrame;
+import br.com.yaw.ssjpac.ui.AboutFrame;
 
-/**
- * Define a <code>Controller</code> principal do sistema, responsável por gerir a tela com a lista de <code>Mercadoria</code>.
- * 
- * <p>
- *  <code>ListaMercadoriaController</code> é mapeada como <code>@Component</code> do Spring.
- *  Dessa forma uma instância de <code>ListaMercadoriaController</code> pode ser criada e gerenciada
- *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
- * </p>
- * 
- * <p>
- *  Essa <code>Controller</code> depende de outros componentes da camada <code>Model</code> (DAO) e <code>View</code> (telas).
- *  As dependências são resolvidas pelo Spring, através da <strong>Injeção de Dependência</strong> c/ a anotação <code>@Autowired</code>.
- * </p>
- * 
- *
- * @author YaW Tecnologia
- */
 @Component
-public class ListaMercadoriaController extends AbstractController {
+public class ListArticleController extends AbstractController {
 
 	@Autowired
-	private ListaMercadoriasFrame frame;
+	private ListArticleFrame frame;
 	
 	@Autowired
-	private SobreFrame sobreFrame;
+	private AboutFrame aboutFrame;
 	
 	@Autowired
-	private IncluirMercadoriaController incluirController;
+	private IncludeArticleController includeArticleController;
 
-//	@Autowired
-	private BuscarMercadoriaController buscarController;
+	@Autowired
+	private FindArticleController findArticleController;
 	
 	@Autowired
-	private MercadoriaDAO dao;
+	private ArticleDAO articleDAO;
 	
-	public ListaMercadoriaController() {
-		System.err.println("radek ListaMercadoriaController");
-	}
-	
-	/**
-	 * Método executado pelo <code>Spring</code>, depois de criar a instância de <code>ListaMercadoriaController</code>.
-	 * 
-	 * <p>Faz o registro das ações e tratadores de eventos.</p>
-	 */
+
 	@PostConstruct
 	private void init() {
 		this.frame.addWindowListener(this);
 		
 		registerAction(frame.getNewButton(), new AbstractAction() {
 			public void action() {
-				incluirController.show();
+				includeArticleController.show();
 			}
 		});
 		
@@ -83,14 +58,14 @@ public class ListaMercadoriaController extends AbstractController {
 		
 		registerAction(frame.getFindButton(), new AbstractAction() {
 			public void action() {
-				buscarController.show();
+				findArticleController.show();
 			}
 		});
 		
 		AbstractAction actionSobre = new AbstractAction() {
 			@Override
 			protected void action() {
-				sobreFrame.setVisible(true);
+				aboutFrame.setVisible(true);
 			}
 		};
 		registerAction(frame.getMenuSobre(), actionSobre);
@@ -101,7 +76,7 @@ public class ListaMercadoriaController extends AbstractController {
 				if (event.getClickCount() == 2) {
 					Mercadoria m = frame.getTable().getMercadoriaSelected();
 					if (m != null) {
-						incluirController.show(m);
+						includeArticleController.show(m);
 					}
 				}
 			}
@@ -155,7 +130,7 @@ public class ListaMercadoriaController extends AbstractController {
 	}
 	
 	private void refreshTable() {
-		this.frame.refreshTable(this.dao.findAll());
+		this.frame.refreshTable(this.articleDAO.findAll());
 	}
 	
 }

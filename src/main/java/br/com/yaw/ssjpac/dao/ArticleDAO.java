@@ -20,7 +20,7 @@ import br.com.yaw.ssjpac.model.Mercadoria;
  * 
  * @author YaW Tecnologia
  */
-public interface MercadoriaDAO extends JpaRepository<Mercadoria, Integer> {
+public interface ArticleDAO extends JpaRepository<Mercadoria, Integer> {
 
 	/**
 	 * Utiliza anotação <code>Query</code> do Spring Data JPA pra definir o código SQL.

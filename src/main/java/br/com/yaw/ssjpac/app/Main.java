@@ -3,12 +3,7 @@ package br.com.yaw.ssjpac.app;
 
 import java.util.Locale;
 
-import br.com.yaw.ssjpac.controller.BuscarMercadoriaController;
-import br.com.yaw.ssjpac.controller.ListaMercadoriaController;
-import br.com.yaw.ssjpac.ui.BuscaMercadoriaFrame;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
-
-import javax.swing.*;
 
 /**
  * Ponto de entrada da aplicação.
