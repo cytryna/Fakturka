@@ -15,7 +15,7 @@ import org.springframework.stereotype.Component;
 import br.com.yaw.ssjpac.action.AbstractAction;
 import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.AbstractEventListener;
-import br.com.yaw.ssjpac.event.AtualizarListarMercadoriaEvent;
+import br.com.yaw.ssjpac.event.RefreshListEventArticle;
 import br.com.yaw.ssjpac.event.BuscarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
@@ -34,7 +34,7 @@ public class ListArticleController extends AbstractController {
 	private IncludeArticleController includeArticleController;
 
 	@Autowired
-	private FindArticleController findArticleController;
+	private SearchArticleController searchArticleController;
 	
 	@Autowired
 	private ArticleDAO articleDAO;
@@ -52,13 +52,13 @@ public class ListArticleController extends AbstractController {
 		
 		registerAction(frame.getRefreshButton(), new AbstractAction() {
 			public void action() {
-				fireEvent(new AtualizarListarMercadoriaEvent());
+				fireEvent(new RefreshListEventArticle());
 			}
 		});
 		
 		registerAction(frame.getFindButton(), new AbstractAction() {
 			public void action() {
-				findArticleController.show();
+				searchArticleController.show();
 			}
 		});
 		
@@ -102,8 +102,8 @@ public class ListArticleController extends AbstractController {
 			}
 		});
 		
-		registerEventListener(AtualizarListarMercadoriaEvent.class, new AbstractEventListener<AtualizarListarMercadoriaEvent>() {
-			public void handleEvent(AtualizarListarMercadoriaEvent event) {
+		registerEventListener(RefreshListEventArticle.class, new AbstractEventListener<RefreshListEventArticle>() {
+			public void handleEvent(RefreshListEventArticle event) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
 						refreshTable();

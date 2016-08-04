@@ -1,4 +1,4 @@
-package br.com.yaw.ssjpac.app;
+package diligentia.app;
 
 
 import java.util.Locale;

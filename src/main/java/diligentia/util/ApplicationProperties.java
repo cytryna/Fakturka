@@ -1,4 +1,4 @@
-package br.com.yaw.ssjpac.util;
+package diligentia.util;
 
 import java.net.URL;
 import java.util.Enumeration;
@@ -62,7 +62,7 @@ public class ApplicationProperties {
 	}
 	
 	public static URL getURLLogo() { 
-        URL imageURL = ApplicationProperties.class.getClassLoader().getResource("logo_yaw.png");  
+        URL imageURL = ApplicationProperties.class.getClassLoader().getResource("logo_yaw.png");
         return imageURL;  
     }
 }

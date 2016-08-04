@@ -11,15 +11,9 @@ import org.springframework.stereotype.Component;
 
 import br.com.yaw.ssjpac.model.Article;
 
-/**
- * Implementa componente para validar os dados da entidade <code>Article</code>.
- * 
- * <p>A validação ocorre através do Bean Validations, mecanismo de validação padrão do Java baseado em anotações.</p>
- * 
- * @author YaW Tecnologia
- */
+
 @Component
-public class MercadoriaValidator implements Validator<Article> {
+public class ArticleValidator implements Validator<Article> {
 	
 	private static ValidatorFactory factory;
 	
@@ -27,7 +21,6 @@ public class MercadoriaValidator implements Validator<Article> {
 		factory = buildDefaultValidatorFactory();
 	}
 
-	@Override
 	public String validate(Article m) {
 		StringBuilder sb = new StringBuilder();
 		if (m != null) {

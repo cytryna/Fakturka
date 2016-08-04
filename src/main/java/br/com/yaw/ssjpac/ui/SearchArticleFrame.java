@@ -19,20 +19,20 @@ import org.springframework.stereotype.Component;
  * com filtro no campo <code>nome</code>. 
  * 
  * <p>
- *  <code>BuscaMercadoriaFrame</code> é mapeada como <code>@Component</code> do Spring. 
- *  Dessa forma uma instância de <code>BuscaMercadoriaFrame</code> pode ser criada e gerenciada
+ *  <code>SearchArticleFrame</code> é mapeada como <code>@Component</code> do Spring.
+ *  Dessa forma uma instância de <code>SearchArticleFrame</code> pode ser criada e gerenciada
  *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
  * </p>
  * 
  * @author YaW Tecnologia
  */
 @Component
-public class BuscaMercadoriaFrame extends JFrame {
+public class SearchArticleFrame extends JFrame {
 	
 	private JTextField tfNome;
 	private JButton bBuscar;
 	
-	public BuscaMercadoriaFrame() {
+	public SearchArticleFrame() {
 		setTitle("Buscar");
 		setSize(250, 250);
 		setLocationRelativeTo(null);

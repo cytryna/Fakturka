@@ -18,20 +18,6 @@ import br.com.yaw.ssjpac.action.AbstractAction;
 import br.com.yaw.ssjpac.event.AbstractEvent;
 import br.com.yaw.ssjpac.event.AbstractEventListener;
 
-/**
- * Classe abstrata que define uma estrutura para componentes da camada controller do padrão arquitetural MVC.
- * 
- * <p><code>Controller</code> é o componente intermediário entre a apresentação (View) e os componentes de negócio (Serviços + DAO + Model).</p>
- * 
- * <p>Habilita:</p>
- * <ul>
- *   <li>Definição de <code>eventos</code> e <code>ações</code> para os componentes gráficos.</li>
- *   <li>Apresentar mensagens de erros gerados em <code>ações</code>dos componentes gráficos.</li>
- *   <li>Liberar recursos do componente no encerramento da janela.</li>
- * </ul>
- * 
- * @author YaW Tecnologia
- */
 public abstract class AbstractController implements ActionListener, WindowListener {
 
 	private static Logger log = Logger.getLogger(AbstractController.class);
@@ -46,37 +32,23 @@ public abstract class AbstractController implements ActionListener, WindowListen
 	
 	public AbstractController(){}
 	
-	/**
-	 * Controller possui um auto-relacionamento, útil em situações aonde uma hierarquia de controladores deve ser respeitada.
-	 * @param parent controller <i>pai</i>
-	 */
 	public AbstractController(AbstractController parent){
 		if (parent != null) {
 			this.parent = parent;
 		}
 	}
 	
-	/**
-	 * Registra uma <code>ação</code> a um componente <code>button</code>.
-	 * 
-	 * @param source
-	 * @param action
-	 */
+
 	protected void registerAction(AbstractButton source, AbstractAction action) {
 		if (source.getActionCommand() == null) {
-			throw new RuntimeException("Componente (Button) sem ação definida!");
+			throw new RuntimeException("Component (Button) without defined action!");
 		}
-		log.debug("Registrando action: " + action.getClass().getName() + " para o botão: " + source.getText());
+		log.debug("Registering action: " + action.getClass().getName() + " for the button: " + source.getText());
         source.addActionListener(this);
         this.actions.put(source.getActionCommand(), action);
     }
 	
-	/**
-	 * Aciona o <code>AbstractEventListener</code> relacionado ao <code>AbstractEvent</code>
-	 * para que o <code>listener</code> trate o evento.
-	 * 
-	 * @param event referência do evento gerado
-	 */
+
 	@SuppressWarnings("unchecked")
 	protected void fireEvent(AbstractEvent<?> event) {
 		if (eventListeners.get(event.getClass()) != null) {
@@ -89,14 +61,8 @@ public abstract class AbstractController implements ActionListener, WindowListen
 			parent.fireEvent(event);
 	}
 	
-	/**
-	 * Registra um <code>listener</code> que deve ser acionado de acordo com o tipo do <code>evento</code>.
-	 * 
-	 * @param eventClass tipo do evento
-	 * @param eventListener tratador (<code>listener</code>) do evento
-	 */
 	protected void registerEventListener(Class<?> eventClass, AbstractEventListener<?> eventListener) {
-        log.debug("Registrando listener: " + eventListener + " para o evento: " + eventClass.getName());
+        log.debug("Registering listener: " + eventListener + " to the event: " + eventClass.getName());
         java.util.List<AbstractEventListener<?>> listenersForEvent = eventListeners.get(eventClass);
         if (listenersForEvent == null) {
         	listenersForEvent = new ArrayList<AbstractEventListener<?>>(); 
@@ -116,7 +82,7 @@ public abstract class AbstractController implements ActionListener, WindowListen
 			AbstractAction action = getAction(actionEvent);
 
 			if (action != null) {
-				log.debug("Executando action: " + action.getClass());
+				log.debug("Running action: " + action.getClass());
 				try {
 					action.actionPerformed();
 				} catch (Exception ex) {
@@ -124,27 +90,19 @@ public abstract class AbstractController implements ActionListener, WindowListen
 				}
 			}
 		} catch (ClassCastException e) {
-			handlerException(new IllegalArgumentException("Action source não é um Abstractbutton: " + actionEvent));
+			handlerException(new IllegalArgumentException("Action source is not a AbstractButton: " + actionEvent));
 		}
 	}
-	
-	/**
-	 * Caso ocorra alguma falha durante a <code>ação</code> apresenta uma mensagem.
-	 * 
-	 * @param ex
-	 */
+
 	protected void handlerException(Exception ex) {
 		log.error(ex);
-		JOptionPane.showMessageDialog(null, ex.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(null, ex.getMessage(), "Error", JOptionPane.ERROR_MESSAGE);
 	}
 	
 	public AbstractController getParentController() {
         return parent;
     }
 	
-	/**
-	 * Método utilizado para liberar recursos carregados pela <code>Controller</code>.
-	 */
 	protected void cleanUp() {}
 	
 	public void windowClosing(WindowEvent windowEvent) { 
