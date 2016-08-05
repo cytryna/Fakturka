@@ -17,7 +17,7 @@
 	<resources>
 		<j2se version="1.6.0+" initial-heap-size="32m" max-heap-size="128m"/>
 		
-		<jar href="lib/hsqldb-2.2.8-s.jar" download="eager" />
+		<jar href="lib/mysql-5.1.38.jar" download="eager" />
 		<jar href="lib/log4j-1.2.16-s.jar" download="eager" />
 		<jar href="lib/slf4j-api-1.6.4.jar" download="eager" />
 		<jar href="lib/hibernate-core-4.1.6.Final.jar" download="eager" />

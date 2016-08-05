@@ -16,23 +16,15 @@
     <context:component-scan base-package="br.com.yaw" />
     
     <!-- Define as configuracoes JPA (veja o arquivo persistence.xml) -->
-    <bean id="entityManagerFactory"
-		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="jpaVendorAdapter">
-			<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-				<property name="generateDdl" value="true" />
-				<property name="database" value="HSQL" />
-			</bean>
-		</property>
-		<property name="persistenceUnitName" value="appSwingSpringUnit" />
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="myDatabase"/>
 	</bean>
-    
+
     <!-- Ativa o controle transacional -->
-    <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	
+
 	<!-- Define a conexao com o banco de dados -->
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="org.hsqldb.jdbcDriver"/>
