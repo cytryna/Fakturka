@@ -9,7 +9,7 @@ import javax.validation.ValidatorFactory;
 
 import org.springframework.stereotype.Component;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 
 
 @Component

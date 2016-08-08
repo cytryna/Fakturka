@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 
 /**
  * Define um TableModel para entidade <code>Article</code>, considerando as colunas:
@@ -65,9 +65,9 @@ public class MercadoriaTableModel extends AbstractTableModel {
 		case 1:
 			return m.getDescription();
 		case 2:
-			return Article.convertPrecoToString(m.getPreco());
+			return Article.convertPrecoToString(m.getPrice());
 		case 3:
-			return m.getQuantidade();
+			return m.getAmount();
 		default:
 			return null;
 		}

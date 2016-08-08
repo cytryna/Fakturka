@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 import org.springframework.stereotype.Component;
 
 @Component

@@ -7,7 +7,7 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.swing.SwingUtilities;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 import br.com.yaw.ssjpac.ui.ListArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

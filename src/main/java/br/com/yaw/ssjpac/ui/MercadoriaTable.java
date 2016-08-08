@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 
 
 public class MercadoriaTable extends JTable {

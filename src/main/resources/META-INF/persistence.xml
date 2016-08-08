@@ -5,7 +5,7 @@
 	<persistence-unit name="myDatabase" transaction-type="RESOURCE_LOCAL">
 		<!--<provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>-->
 		<provider>org.hibernate.ejb.HibernatePersistence</provider>
-		<class>br.com.yaw.ssjpac.model.Article</class>
+		<class>diligentia.model.Article</class>
 		<!--<jta-data-source>java:jboss/datasources/jbossas7development</jta-data-source>-->
 		<!--<jta-data-source>java:jboss/datasources/mydatasource</jta-data-source>-->
 		<properties>
@@ -16,7 +16,7 @@
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5Dialect" />
 			<property name="hibernate.connection.useUnicode" value="true" />
 			<property name="hibernate.connection.characterEncoding" value="UTF-8" />
-			<!--<property name="hibernate.hbm2ddl.auto" value="create" />-->
+			<property name="hibernate.hbm2ddl.auto" value="create" />
 			<!--CREATE SCHEMA `booklibrary` DEFAULT CHARACTER SET utf8 COLLATE utf8_polish_ci;-->
 		</properties>
 	</persistence-unit>

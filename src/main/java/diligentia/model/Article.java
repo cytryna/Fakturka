@@ -1,4 +1,4 @@
-package br.com.yaw.ssjpac.model;
+package diligentia.model;
 
 import java.text.NumberFormat;
 import java.text.ParseException;
@@ -23,26 +23,24 @@ public class Article extends AbstractPersistable<Integer> {
 	private String description;
 	
 	@NotNull @Min(value=1)
-	private Integer quantidade;
-	
+	private Integer amount;//TODO-rwichrowski przenieść do faktury
+
 	@NotNull @Min(value=1)
-	private Double preco;
-	
-	@Version
-	private Integer version;
+	private Double price;
+
+	private Unit unit = Unit.SZTUK;
 	
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getNumberInstance(new Locale("pl","PL"));
 	
 	public Article(){
 	}
 	
-	public Article(Integer id, String name, String description, Integer quantidade, Double preco, Integer version) {
+	public Article(Integer id, String name, String description, Integer amount, Double price, Integer version) {
 		setId(id);
 		this.name = name;
 		this.description = description;
-		this.quantidade = quantidade;
-		this.preco = preco;
-		this.version = version;
+		this.amount = amount;
+		this.price = price;
 	}
 	
 	public String getName() {
@@ -61,28 +59,24 @@ public class Article extends AbstractPersistable<Integer> {
 		this.description = description;
 	}
 	
-	public Integer getQuantidade() {
-		return quantidade;
+	public Integer getAmount() {
+		return amount;
 	}
 	
-	public void setQuantidade(Integer quantidade) {
-		this.quantidade = quantidade;
+	public void setAmount(Integer amount) {
+		this.amount = amount;
 	}
 	
-	public Double getPreco() {
-		return preco;
+	public Double getPrice() {
+		return price;
 	}
 
-	public void setPreco(Double preco) {
-		this.preco = preco;
+	public void setPrice(Double price) {
+		this.price = price;
 	}
 	
 	public String getPrecoFormatado() {
-		return convertPrecoToString(this.preco);
-	}
-	
-	public Integer getVersion() {
-		return version;
+		return convertPrecoToString(this.price);
 	}
 	
 	public static String convertPrecoToString(double preco) {

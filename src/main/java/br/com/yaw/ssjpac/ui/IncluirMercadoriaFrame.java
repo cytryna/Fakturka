@@ -13,26 +13,10 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 import org.springframework.stereotype.Component;
 
 
-/**
- * Tela para incluir/editar o registro da <code>Article</code>.
- * 
- * <p>
- *  Essa tela trabalha em modo inclusão ou edição de <code>Article</code>.
- *  Em edição é possível acionar a funcionalidade para remover <code>Article</code>.
- * </p>
- * 
- * <p>
- *  <code>IncluirMercadoriaFrame</code> é mapeada como <code>@Component</code> do Spring. 
- *  Dessa forma uma instância de <code>IncluirMercadoriaFrame</code> pode ser criada e gerenciada
- *  pelo Spring, favorecendo a Inversão de Controle <i>(IoC)</i> e Injeção de Dependência <i>(DI)</i>.
- * </p>
- * 
- * @author YaW Tecnologia
- */
 @Component
 public class IncluirMercadoriaFrame extends JFrame {
 
@@ -41,7 +25,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 	private JTextField tfDescricao;
 	private JTextField tfPreco;
 	private JFormattedTextField tfId;
-	private JFormattedTextField tfVersion;
+
 	
 	private JButton bSalvar;
 	private JButton bCancelar;
@@ -114,8 +98,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		tfId = new JFormattedTextField();
 		tfId.setValue(new Integer(0));
 		tfId.setEnabled(false);
-		tfVersion = new JFormattedTextField();
-		tfVersion.setVisible(false);
+
 
 		painel.add(new JLabel("Nome:"));
 		painel.add(tfNome);
@@ -142,12 +125,12 @@ public class IncluirMercadoriaFrame extends JFrame {
 			descricao = tfDescricao.getText().trim();
 		}
 		
-		Integer quantidade = null;
+		Integer amount = null;
 		try {
 			if (!tfQuantidade.getText().trim().isEmpty())
-			quantidade = Integer.valueOf(tfQuantidade.getText());
+			amount = Integer.valueOf(tfQuantidade.getText());
 		} catch (NumberFormatException nex) {
-			throw new RuntimeException("Erro durante a conversão do campo quantidade (Integer).\nConteudo inválido!");
+			throw new RuntimeException("Erro durante a conversão do campo amount (Integer).\nConteudo inválido!");
 		}
 		
 		Double preco = null;
@@ -165,11 +148,8 @@ public class IncluirMercadoriaFrame extends JFrame {
 		} catch (Exception nex) {}
 		
 		Integer version = null;
-		try {
-			version = Integer.parseInt(tfVersion.getText());
-		} catch (Exception nex) {}
-		
-		return new Article(id, nome, descricao, quantidade, preco, version);
+
+		return new Article(id, nome, descricao, amount, preco, version);
 	}
 	
 	public void resetForm() {
@@ -178,7 +158,6 @@ public class IncluirMercadoriaFrame extends JFrame {
 		tfDescricao.setText("");
 		tfPreco.setText("");
 		tfQuantidade.setValue(new Integer(1));
-		tfVersion.setValue(null);
 		bExcluir.setVisible(false);
 	}
 	
@@ -186,9 +165,8 @@ public class IncluirMercadoriaFrame extends JFrame {
 		tfId.setValue(m.getId());
 		tfNome.setText(m.getName());
 		tfDescricao.setText(m.getDescription());
-		tfQuantidade.setValue(m.getQuantidade());
+		tfQuantidade.setValue(m.getAmount());
 		tfPreco.setText(m.getPrecoFormatado());
-		tfVersion.setValue(m.getVersion());
 	}
 	
 	/**

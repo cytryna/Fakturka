@@ -1,6 +1,6 @@
 package br.com.yaw.ssjpac.event;
 
-import br.com.yaw.ssjpac.model.Article;
+import diligentia.model.Article;
 
 /**
  * Evento deve ser gerado durante a exclusão de uma <code>Article</code>.
