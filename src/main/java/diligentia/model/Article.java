@@ -6,7 +6,6 @@ import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
-import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -75,12 +74,12 @@ public class Article extends AbstractPersistable<Integer> {
 		this.price = price;
 	}
 	
-	public String getPrecoFormatado() {
-		return convertPrecoToString(this.price);
+	public String getPriceFormatted() {
+		return convertPriceToString(this.price);
 	}
 	
-	public static String convertPrecoToString(double preco) {
-		return NUMBER_FORMAT.format(preco);
+	public static String convertPriceToString(double price) {
+		return NUMBER_FORMAT.format(price);
 	}
 	
 	public static double formatStringToPreco(String strPreco) throws ParseException {

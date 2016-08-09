@@ -65,7 +65,7 @@ public class MercadoriaTableModel extends AbstractTableModel {
 		case 1:
 			return m.getDescription();
 		case 2:
-			return Article.convertPrecoToString(m.getPrice());
+			return Article.convertPriceToString(m.getPrice());
 		case 3:
 			return m.getAmount();
 		default:

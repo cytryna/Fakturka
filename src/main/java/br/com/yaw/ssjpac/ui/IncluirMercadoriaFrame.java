@@ -166,7 +166,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		tfNome.setText(m.getName());
 		tfDescricao.setText(m.getDescription());
 		tfQuantidade.setValue(m.getAmount());
-		tfPreco.setText(m.getPrecoFormatado());
+		tfPreco.setText(m.getPriceFormatted());
 	}
 	
 	/**
