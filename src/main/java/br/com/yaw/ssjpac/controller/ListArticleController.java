@@ -40,7 +40,7 @@ public class ListArticleController extends AbstractController {
 	private ArticleDAO articleDAO;
 	
 
-	@PostConstruct
+//	@PostConstruct
 	private void init() {
 		this.frame.addWindowListener(this);
 		
