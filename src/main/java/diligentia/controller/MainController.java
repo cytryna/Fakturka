@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
+import javax.swing.*;
 import java.awt.*;
 
 @Component
@@ -16,7 +17,8 @@ public class MainController {
 
     @PostConstruct
     private void init() {
-        frame.setSize(new Dimension(600, 200));
+        frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
+        frame.setSize(new Dimension(1200, 800));
         frame.setVisible(true);
     }
 
