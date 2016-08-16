@@ -23,8 +23,9 @@ public class MainFrame extends JFrame {
 
         contentPanel.setVisible(true);
         contentPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));//TODO-rwichrowski jakiś properties z kolorami
+        contentPanel.setLayout(new CardLayout());
 
-        menuPanel = new MenuPanel(contentPanel);
+        menuPanel = new MenuPanel(contentPanel, createInvoicePanel());
         menuPanel.setVisible(true);
 
         mainPanel.setVisible(true);
@@ -32,5 +33,9 @@ public class MainFrame extends JFrame {
         mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
+    }
+
+    private AbstractAction createInvoicePanel() {
+        contentPanel. skończyć card layout
     }
 }
