@@ -36,6 +36,6 @@ public class MainFrame extends JFrame {
     }
 
     private AbstractAction createInvoicePanel() {
-        contentPanel. skończyć card layout
+        return null; //TODO-rwichrowski  dokończyć akcję dla przycisków
     }
 }
