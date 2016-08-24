@@ -18,6 +18,6 @@ public class Invoice {
 
     @NotNull
     @OneToOne(fetch=FetchType.LAZY)
-    private Customer customer;
+    private Company company;
 
 }

@@ -34,62 +34,67 @@ public class HelloWorld {
         document.open();
         // step 4
         PdfPTable table = new PdfPTable(2);
+        table.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
         table.setWidthPercentage(100);
-        Phrase p = new Phrase(
-                "Dr. iText or: How I Learned to Stop Worrying " +
-                        "and Love the Portable Document Format.");
-        PdfPCell cell = new PdfPCell(p);
-        cell.setBorder(Rectangle.NO_BORDER);
+        Phrase salesman = new Phrase("Wich-mot Edward Wichrowski\n09-500 Goostynin\nul. Szopena 4\nNIP: 775-000-46-84");
+        Phrase customer = new Phrase("Diligentia Radosław Wichrowski\n04-113 Warszawa\nul. Łukowska 1 m 156\nNIP: 971-060-22-10");
+
+//        PdfPCell emptyCell = new PdfPCell(salesman);
+        PdfPCell emptyCell = new PdfPCell();
+        emptyCell.setBorder(Rectangle.NO_BORDER);
         table.addCell("Faktura VAT");
-        table.addCell(cell);
+        table.addCell(emptyCell);
         table.addCell("15/12/0049");
-        cell.setLeading(20f, 0f);
-        table.addCell(cell);
+//        emptyCell.setLeading(20f, 0f);
+        table.addCell(emptyCell);
         table.addCell("Oryginał");//TODO-rwichrowski Polskie znaki
-        cell.setLeading(3f, 1.2f);
-        table.addCell(cell);
+//        emptyCell.setLeading(3f, 1.2f);
+        table.addCell(emptyCell);
         table.addCell("Warszawa 2015-12-29");
-        cell.setLeading(0f, 1.2f);
-        table.addCell(cell);
-        table.addCell("no leading at all");
-        cell.setLeading(0f, 0f);
-        table.addCell(cell);
-        cell = new PdfPCell(new Phrase(
-                "Dr. iText or: How I Learned to Stop Worrying and Love PDF"));
+//        emptyCell.setLeading(0f, 1.2f);
+        table.addCell(emptyCell);
+        table.addCell(salesman);
+        table.addCell(customer);
+        emptyCell = new PdfPCell(new Phrase("1"));
         table.addCell("padding 10");
-        cell.setPadding(10);
-        table.addCell(cell);
+//        emptyCell.setPadding(10);
+        table.addCell(emptyCell);
         table.addCell("padding 0");
-        cell.setPadding(0);
-        table.addCell(cell);
-        table.addCell("different padding for left, right, top and bottom");
-        cell.setPaddingLeft(20);
-        cell.setPaddingRight(50);
-        cell.setPaddingTop(0);
-        cell.setPaddingBottom(5);
-        table.addCell(cell);
-//        p = new Phrase("iText in Action Second Edition");
+//        emptyCell.setPadding(0);
+        table.addCell(emptyCell);
+        table.addCell("2");
+//        emptyCell.setPaddingLeft(20);
+//        emptyCell.setPaddingRight(50);
+//        emptyCell.setPaddingTop(0);
+//        emptyCell.setPaddingBottom(5);
+        table.addCell(emptyCell);
+//        salesman = new Phrase("iText in Action Second Edition");
 //        table.getDefaultCell().setPadding(2);
 //        table.getDefaultCell().setUseAscender(false);
 //        table.getDefaultCell().setUseDescender(false);
 //        table.addCell("padding 2; no ascender, no descender");
-//        table.addCell(p);
+//        table.addCell(salesman);
 //        table.getDefaultCell().setUseAscender(true);
 //        table.getDefaultCell().setUseDescender(false);
 //        table.addCell("padding 2; ascender, no descender");
-//        table.addCell(p);
+//        table.addCell(salesman);
 //        table.getDefaultCell().setUseAscender(false);
 //        table.getDefaultCell().setUseDescender(true);
 //        table.addCell("padding 2; descender, no ascender");
-//        table.addCell(p);
+//        table.addCell(salesman);
 //        table.getDefaultCell().setUseAscender(true);
 //        table.getDefaultCell().setUseDescender(true);
 //        table.addCell("padding 2; ascender and descender");
-        cell.setPadding(2);
-        cell.setUseAscender(true);
-        cell.setUseDescender(true);
-        table.addCell(p);
+        emptyCell.setPadding(2);
+        emptyCell.setUseAscender(true);
+        emptyCell.setUseDescender(true);
+        table.addCell(salesman);
         document.add(table);
+
+
+        //TODO-rwichrowski Dodać drugą tabelkę z danymi
+
+
         // step 5
         document.close();
     }

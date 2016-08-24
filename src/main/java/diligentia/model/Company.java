@@ -5,7 +5,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
-public class Customer {
+public class Company { //TODO-rwichrowski może zrobić to zbstrakcyjną i dodac customer i sellsman
     @Id
     @GeneratedValue
     private int id;
