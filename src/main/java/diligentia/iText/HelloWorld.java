@@ -4,10 +4,8 @@ package diligentia.iText;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
-import com.itextpdf.text.Document;
-import com.itextpdf.text.DocumentException;
-import com.itextpdf.text.Phrase;
-import com.itextpdf.text.Rectangle;
+import com.itextpdf.text.*;
+import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -41,6 +39,7 @@ public class HelloWorld {
 
 //        PdfPCell emptyCell = new PdfPCell(salesman);
         PdfPCell emptyCell = new PdfPCell();
+
         emptyCell.setBorder(Rectangle.NO_BORDER);
         table.addCell("Faktura VAT");
         table.addCell(emptyCell);
@@ -55,6 +54,7 @@ public class HelloWorld {
         table.addCell(emptyCell);
         table.addCell(salesman);
         table.addCell(customer);
+
         emptyCell = new PdfPCell(new Phrase("1"));
         table.addCell("padding 10");
 //        emptyCell.setPadding(10);
@@ -85,15 +85,36 @@ public class HelloWorld {
 //        table.getDefaultCell().setUseAscender(true);
 //        table.getDefaultCell().setUseDescender(true);
 //        table.addCell("padding 2; ascender and descender");
-        emptyCell.setPadding(2);
-        emptyCell.setUseAscender(true);
-        emptyCell.setUseDescender(true);
-        table.addCell(salesman);
+//        emptyCell.setPadding(2);
+//        emptyCell.setUseAscender(true);
+//        emptyCell.setUseDescender(true);
+//        table.addCell(salesman);
         document.add(table);
 
 
-        //TODO-rwichrowski Dodać drugą tabelkę z danymi
 
+        BaseFont times = BaseFont.createFont(BaseFont.TIMES_ROMAN,  BaseFont.CP1250, true);
+        Font t9 = new Font(times,14);
+        String line="Śćźół:";
+        document.add(new Paragraph(line, t9));
+
+        PdfPTable articleTable = new PdfPTable(2);
+        PdfPCell cellLp = new PdfPCell(new Phrase("Lp"));
+        cellLp.setBackgroundColor(BaseColor.LIGHT_GRAY);
+        articleTable.addCell(cellLp);
+        cellLp.setPhrase(new Phrase("Nazwa artykółu", t9));
+        articleTable.addCell(cellLp);
+        document.add(articleTable);
+
+
+        document.add(new Paragraph("artykółu Odkud jste?"));
+        document.add(new Paragraph("Uvidíme se za chvilku. Měj se."));
+        document.add(new Paragraph("Dovolte, abych se představil."));
+        document.add(new Paragraph("To je studentka."));
+        document.add(new Paragraph("Všechno v pořádku?"));
+        document.add(new Paragraph("On je inženýr. Ona je lékař."));
+        document.add(new Paragraph("Toto je okno."));
+        document.add(new Paragraph("Zopakujte to prosím."));
 
         // step 5
         document.close();
