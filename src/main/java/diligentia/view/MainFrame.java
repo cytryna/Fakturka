@@ -25,17 +25,12 @@ public class MainFrame extends JFrame {
         contentPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));//TODO-rwichrowski jakiś properties z kolorami
         contentPanel.setLayout(new CardLayout());
 
-        menuPanel = new MenuPanel(contentPanel, createInvoicePanel());
+        menuPanel = new MenuPanel(contentPanel);
         menuPanel.setVisible(true);
 
         mainPanel.setVisible(true);
         mainPanel.setLayout(new BorderLayout());
         mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
-
-    }
-
-    private AbstractAction createInvoicePanel() {
-        return null; //TODO-rwichrowski  dokończyć akcję dla przycisków
     }
 }
