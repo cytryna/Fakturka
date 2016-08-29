@@ -13,7 +13,8 @@
 
 	<!-- Considera a estrutura de pacote para percorrer classes com as anotacoes de 
     	 injecao de dependencia do Spring como: @Component, @Repository e @Service -->
-    <context:component-scan base-package="br.com.yaw, diligentia" />
+    <!--<context:component-scan base-package="br.com.yaw, diligentia" />-->
+	<context:component-scan base-package="diligentia" />
 
     <!-- Define as configuracoes JPA (veja o arquivo persistence.xml) -->
 	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalEntityManagerFactoryBean">
