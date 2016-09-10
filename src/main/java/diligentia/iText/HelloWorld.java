@@ -1,6 +1,7 @@
 package diligentia.iText;
 
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 
@@ -13,8 +14,7 @@ import com.itextpdf.text.pdf.PdfWriter;
 public class HelloWorld {
 
     /** Path to the resulting PDF file. */
-    public static final String RESULT
-            = "/home/rwichrowski/fakturka/hello.pdf";
+    public static final String RESULT = System.getProperty("user.home") + File.separator + "fakturka/hello.pdf";
 
     /**
      * Main method.
