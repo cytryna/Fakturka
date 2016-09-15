@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
         mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        createButton("First", e -> swichPanel(new JLabel("first")));
+//        createButton("First", e -> swichPanel(new JLabel("first")));
 //        createButton("Second", e -> swichPanel(new JLabel("second")));
     }
 
