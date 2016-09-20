@@ -2,8 +2,10 @@ package diligentia.view;
 
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 @Component
@@ -18,6 +20,7 @@ public class MainFrame extends JFrame {
 
     }
 
+    @PostConstruct
     private void init() {
         JScrollPane scrollPane = new JScrollPane(mainPanel);
         scrollPane.setVisible(true);
@@ -36,15 +39,22 @@ public class MainFrame extends JFrame {
         mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-//        createButton("First", e -> swichPanel(new JLabel("first")));
-//        createButton("Second", e -> swichPanel(new JLabel("second")));
+        createButton("First");
+        createButton("Second");
     }
 
 
-    public void createButton(String buttonName, ActionListener listener)
+    public void createButton(String buttonName)
     {
         JButton jButton = new JButton(buttonName);
-        jButton.addActionListener(listener);
+        jButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                swichPanel(new JLabel("d"));
+                revalidate();
+            }
+        });
+//        contentPanel.add(new JLabel(buttonName));
         menuPanel.add(jButton);
     }
 
