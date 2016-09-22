@@ -6,13 +6,12 @@ import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 @Component
 public class MainFrame extends JFrame {
 
     private JPanel mainPanel = new JPanel();
-    private JPanel menuPanel;
+//    private JPanel menuPanel;
     private JPanel contentPanel = new JPanel();
 
     public MainFrame() {
@@ -31,16 +30,18 @@ public class MainFrame extends JFrame {
         contentPanel.setLayout(new CardLayout());
 
 //        menuPanel = new MenuPanel(contentPanel);
-        menuPanel = new JPanel();
-        menuPanel.setVisible(true);
+//        menuPanel = new JPanel();
+//        menuPanel.setVisible(true);
 
         mainPanel.setVisible(true);
         mainPanel.setLayout(new BorderLayout());
-        mainPanel.add(menuPanel, BorderLayout.NORTH);
+//        mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        createButton("First");
-        createButton("Second");
+        contentPanel.add(new IssueInvoiceView());
+
+//        createButton("First");
+//        createButton("Second");
     }
 
 
@@ -55,7 +56,7 @@ public class MainFrame extends JFrame {
             }
         });
 //        contentPanel.add(new JLabel(buttonName));
-        menuPanel.add(jButton);
+//        menuPanel.add(jButton);
     }
 
 
