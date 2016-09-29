@@ -1,4 +1,4 @@
-package br.com.yaw.ssjpac.dao;
+package diligentia.dao;
 
 import java.util.List;
 
@@ -6,7 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
 import diligentia.model.Article;
-@Deprecated
+
 public interface ArticleDAO extends JpaRepository<Article, Integer> {
 
 	@Query("select m from Article m where m.name like ?1")

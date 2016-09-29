@@ -1,14 +1,19 @@
 package diligentia.view;
 
+import diligentia.model.Article;
 import diligentia.model.Company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.*;
+import java.util.List;
 
 import static diligentia.util.GridBagConstraintsBuilder.constraints;
 import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
 public class NewInvoiceView extends JPanel {
+
+	private ArticleTableModel model;
 
 	public NewInvoiceView() {
 
@@ -47,10 +52,11 @@ public class NewInvoiceView extends JPanel {
 
     private Component createArticleTable() {
 		JTable table = new JTable();
-		ArticleTableModel model = new ArticleTableModel();
+		model = new ArticleTableModel();
 		table.setModel(model);
 		JScrollPane tableScrollPane = new JScrollPane(table);
 		tableScrollPane.setPreferredSize(new Dimension(700, 182));
+
 		return tableScrollPane;
     }
 
@@ -69,6 +75,10 @@ public class NewInvoiceView extends JPanel {
 		jPanel.add(new JTextField(company.getStreet()),
 			constraints().withPosition(0, y++).withAnchor(GridBagConstraints.WEST).build());
 		return jPanel;
+	}
+
+	public void reload(List<Article> articles) {
+		model.reload(articles);
 	}
 
 	// https://examples.javacodegeeks.com/core-java/java-swing-mvc-example/

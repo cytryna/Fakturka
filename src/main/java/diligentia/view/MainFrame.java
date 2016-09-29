@@ -1,11 +1,14 @@
 package diligentia.view;
 
+import diligentia.model.Article;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.util.*;
+import java.util.List;
 
 @Component
 public class MainFrame extends JFrame {
@@ -13,6 +16,7 @@ public class MainFrame extends JFrame {
     private JPanel mainPanel = new JPanel();
 //    private JPanel menuPanel;
     private JPanel contentPanel = new JPanel();
+    private NewInvoiceView newInvoiceView;
 
     public MainFrame() {
         init();
@@ -38,7 +42,8 @@ public class MainFrame extends JFrame {
 //        mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        contentPanel.add(new NewInvoiceView());
+        newInvoiceView = new NewInvoiceView();
+        contentPanel.add(newInvoiceView);
 
 //        createButton("First");
 //        createButton("Second");
@@ -64,4 +69,7 @@ public class MainFrame extends JFrame {
         contentPanel.add(component);
     }
 
+    public void refreshTable(List<Article> articles) {
+        newInvoiceView.reload(articles);
+    }
 }

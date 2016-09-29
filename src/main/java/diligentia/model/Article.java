@@ -6,6 +6,7 @@ import java.util.Locale;
 
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -13,7 +14,6 @@ import javax.validation.constraints.Size;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-@Table(name="article")
 public class Article extends AbstractPersistable<Integer> {
 	
 	@NotNull @Size(min=5, max=200)
@@ -26,6 +26,9 @@ public class Article extends AbstractPersistable<Integer> {
 
 	@NotNull @Min(value=1)
 	private Double price;
+
+	@Version
+	private Integer version;
 
 	private Unit unit = Unit.SZTUK;
 	
@@ -40,6 +43,7 @@ public class Article extends AbstractPersistable<Integer> {
 		this.description = description;
 		this.amount = amount;
 		this.price = price;
+		this.version = version;
 	}
 	
 	public String getName() {
@@ -73,15 +77,19 @@ public class Article extends AbstractPersistable<Integer> {
 	public void setPrice(Double price) {
 		this.price = price;
 	}
-	
+
+	public Integer getVersion() {
+		return version;
+	}
+
 	public String getPriceFormatted() {
 		return convertPriceToString(this.price);
 	}
-	
-	public static String convertPriceToString(double price) {
+
+		public static String convertPriceToString(double price) {
 		return NUMBER_FORMAT.format(price);
 	}
-	
+
 	public static double formatStringToPreco(String strPreco) throws ParseException {
 		 return NUMBER_FORMAT.parse(strPreco).doubleValue();
 	}
