@@ -38,7 +38,7 @@ public class MainFrame extends JFrame {
 //        mainPanel.add(menuPanel, BorderLayout.NORTH);
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
-        contentPanel.add(new IssueInvoiceView());
+        contentPanel.add(new NewInvoiceView());
 
 //        createButton("First");
 //        createButton("Second");

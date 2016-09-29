@@ -1,7 +1,6 @@
 package diligentia.view;
 
 import diligentia.model.Company;
-import diligentia.util.GridBagConstraintsBuilder;
 
 import javax.swing.*;
 import java.awt.*;
@@ -9,9 +8,9 @@ import java.awt.*;
 import static diligentia.util.GridBagConstraintsBuilder.constraints;
 import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
-public class IssueInvoiceView extends JPanel {
+public class NewInvoiceView extends JPanel {
 
-	public IssueInvoiceView() {
+	public NewInvoiceView() {
 
 		init();
 		setBorder(BorderFactory.createLineBorder(Color.magenta));
@@ -41,14 +40,18 @@ public class IssueInvoiceView extends JPanel {
 		add(createCompanyPanel("Nabywca", customerCompany),
 			fillDefaults().withPosition(1, 3).build());
 
-
-        add(createArticleTable(),
-                fillDefaults().withPosition(0, 4).build());
+		add(createArticleTable(),
+                fillDefaults().withPosition(0, 4).withGridWidth(2).build());
 
 	}
 
     private Component createArticleTable() {
-        return new JLabel("tabelka artykułów");
+		JTable table = new JTable();
+		ArticleTableModel model = new ArticleTableModel();
+		table.setModel(model);
+		JScrollPane tableScrollPane = new JScrollPane(table);
+		tableScrollPane.setPreferredSize(new Dimension(700, 182));
+		return tableScrollPane;
     }
 
     private Component createCompanyPanel(String title, Company company) {
