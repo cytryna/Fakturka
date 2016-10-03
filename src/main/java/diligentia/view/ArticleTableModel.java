@@ -15,9 +15,11 @@ public class ArticleTableModel extends AbstractTableModel {
     private List<Article> articles;
 
     private String[] colNomes =  { "Symbol", "Company Name",
-            "Price", "Change", "% Change", "Volume" };
+            "Price", "Change" };
 
     private Class<?>[] colTipos = { String.class, String.class, String.class, Integer.class };
+
+    public ArticleTableModel(){}
 
     public void reload(List<Article> articles) {
         this.articles = articles;

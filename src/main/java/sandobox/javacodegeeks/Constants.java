@@ -6,7 +6,7 @@ package sandobox.javacodegeeks;
  */
 public class Constants {
 
-	protected static final String[] TABLE_HEADER = { "Symbol", "Company Name",
+	public static final String[] TABLE_HEADER = { "Symbol", "Company Name",
 			"Price", "Change", "% Change", "Volume" };
 
 	public static final Object[][] DATA = {

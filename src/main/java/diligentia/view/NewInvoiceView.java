@@ -5,6 +5,7 @@ import diligentia.model.Company;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 import java.util.*;
 import java.util.List;
 
@@ -45,8 +46,20 @@ public class NewInvoiceView extends JPanel {
 		add(createCompanyPanel("Nabywca", customerCompany),
 			fillDefaults().withPosition(1, 3).build());
 
+		JButton refresh = new JButton("refresh");
+		refresh.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Article> articles = new ArrayList<>();
+				articles.add(new Article(3, "Koło", "opis", 3, 3.0, 2));
+				articles.add(new Article(4, "szyba", "opis", 4, 4.0, 4));
+				reload(articles);
+			}
+		});
+		add(refresh,constraints().withPosition(0, 4).build());
+
 		add(createArticleTable(),
-                fillDefaults().withPosition(0, 4).withGridWidth(2).build());
+                fillDefaults().withPosition(0, 5).withGridWidth(2).build());
 
 	}
 
@@ -79,6 +92,7 @@ public class NewInvoiceView extends JPanel {
 
 	public void reload(List<Article> articles) {
 		model.reload(articles);
+
 	}
 
 	// https://examples.javacodegeeks.com/core-java/java-swing-mvc-example/
