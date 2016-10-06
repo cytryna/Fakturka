@@ -30,7 +30,7 @@ public class MainFrame extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         contentPanel.setVisible(true);
-        contentPanel.setBorder(BorderFactory.createLineBorder(Color.GRAY));//TODO-rwichrowski jakiś properties z kolorami
+        contentPanel.setBorder(BorderFactory.createTitledBorder("contentPanel"));
         contentPanel.setLayout(new CardLayout());
 
 //        menuPanel = new MenuPanel(contentPanel);
@@ -39,7 +39,19 @@ public class MainFrame extends JFrame {
 
         mainPanel.setVisible(true);
         mainPanel.setLayout(new BorderLayout());
-//        mainPanel.add(menuPanel, BorderLayout.NORTH);
+
+        JPanel headerPanel = new JPanel();
+        headerPanel.add(new JLabel(""));
+        headerPanel.setPreferredSize(new Dimension(getWidth(), 150));
+        headerPanel.setBorder(BorderFactory.createTitledBorder("Header Panel"));
+        mainPanel.add(headerPanel, BorderLayout.NORTH);
+
+        JPanel leftPanel = new JPanel();
+        leftPanel.add(new JLabel(""));
+        leftPanel.setPreferredSize(new Dimension(250, getHeight()));
+        leftPanel.setBorder(BorderFactory.createTitledBorder("Left Panel"));
+        mainPanel.add(leftPanel, BorderLayout.WEST);
+
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
         newInvoiceView = new NewInvoiceView();

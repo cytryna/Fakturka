@@ -1,8 +1,6 @@
 package diligentia.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.text.NumberFormat;
@@ -22,6 +20,10 @@ public class Item {
     private Double price;
 
     private Unit unit = Unit.SZTUK;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "invoiceId")
+    private Invoice invoice;
 
     private static final NumberFormat NUMBER_FORMAT = NumberFormat.getNumberInstance(new Locale("pl","PL"));
 }

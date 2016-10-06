@@ -23,7 +23,7 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	private void init() {
-		Company sellerCompany = new Company();
+		Company sellerCompany = new Company();Wynieść to do jakiegoś wspolnego modelu gdzieś na początku i postaraj się go zapisać i odczytać z bazy danych
 		sellerCompany.setTaxIdentificationNumber("NIP 775-000-78-54");
 		sellerCompany.setName("wich-mot edward Wichrowski");
 		sellerCompany.setPostCode("09-500");
@@ -46,7 +46,7 @@ public class NewInvoiceView extends JPanel {
 		add(createCompanyPanel("Nabywca", customerCompany),
 			fillDefaults().withPosition(1, 3).build());
 
-		JButton refresh = new JButton("refresh");
+		JButton refresh = new JButton("Odśwież");
 		refresh.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -57,6 +57,19 @@ public class NewInvoiceView extends JPanel {
 			}
 		});
 		add(refresh,constraints().withPosition(0, 4).build());
+
+		JButton printButton = new JButton("Drukuj");
+		printButton.addActionListener(new AbstractAction() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				List<Article> articles = new ArrayList<>();
+				articles.add(new Article(3, "Koło", "opis", 3, 3.0, 2));
+				articles.add(new Article(4, "szyba", "opis", 4, 4.0, 4));
+				reload(articles);
+			}
+		});
+		add(printButton,constraints().withPosition(1, 4).build());
+
 
 		add(createArticleTable(),
                 fillDefaults().withPosition(0, 5).withGridWidth(2).build());
