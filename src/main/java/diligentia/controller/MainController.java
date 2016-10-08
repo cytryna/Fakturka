@@ -2,6 +2,7 @@ package diligentia.controller;
 
 import br.com.yaw.ssjpac.ui.ListArticleFrame;
 import diligentia.dao.ArticleDAO;
+import diligentia.dao.CompanyRepository;
 import diligentia.model.Article;
 import diligentia.view.MainFrame;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +24,7 @@ public class MainController {
     private MainFrame frame;
 
 //    @Autowired
-//    private ArticleDAO articleDAO;
+//    private CompanyRepository companyRepository;Rozkminić dlaczego nie mogę tego wtrzyknąć
 
     @PostConstruct
     private void init() {

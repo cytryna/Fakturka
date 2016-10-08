@@ -23,7 +23,9 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	private void init() {
-		Company sellerCompany = new Company();Wynieść to do jakiegoś wspolnego modelu gdzieś na początku i postaraj się go zapisać i odczytać z bazy danych
+		Company sellerCompany = new Company();
+		// Wynieść to do jakiegoś wspolnego modelu gdzieś na początku i postaraj się go zapisać i o
+		// dczytać z bazy danych
 		sellerCompany.setTaxIdentificationNumber("NIP 775-000-78-54");
 		sellerCompany.setName("wich-mot edward Wichrowski");
 		sellerCompany.setPostCode("09-500");
