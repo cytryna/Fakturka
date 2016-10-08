@@ -9,7 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Transactional(readOnly = true)
+//@Transactional(readOnly = true)
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
 	@Query("select m from Company m where m.name like ?1")

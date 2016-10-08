@@ -27,6 +27,6 @@
 	</bean>
 
     <!-- Ativa a criacao dos repositorios no Spring Data JPA -->
-    <jpa:repositories base-package="br.com.yaw.ssjpac.dao" />
+    <jpa:repositories base-package="diligentia.dao" />
 
 </beans>
