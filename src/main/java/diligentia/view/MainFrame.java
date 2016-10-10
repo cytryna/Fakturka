@@ -13,10 +13,13 @@ import java.util.List;
 @Component
 public class MainFrame extends JFrame {
 
+    private static final String COMPANY_CARD = "companyCard";
+    private static final String INVOICE_CARD = "invoiceCard";
     private JPanel mainPanel = new JPanel();
 //    private JPanel menuPanel;
     private JPanel contentPanel = new JPanel();
     private NewInvoiceView newInvoiceView;
+    private CardLayout cardLayout;
 
     public MainFrame() {
         init();
@@ -31,7 +34,8 @@ public class MainFrame extends JFrame {
 
         contentPanel.setVisible(true);
         contentPanel.setBorder(BorderFactory.createTitledBorder("contentPanel"));
-        contentPanel.setLayout(new CardLayout());
+        cardLayout = new CardLayout();
+        contentPanel.setLayout(cardLayout);
 
 //        menuPanel = new MenuPanel(contentPanel);
 //        menuPanel = new JPanel();
@@ -46,19 +50,43 @@ public class MainFrame extends JFrame {
         headerPanel.setBorder(BorderFactory.createTitledBorder("Header Panel"));
         mainPanel.add(headerPanel, BorderLayout.NORTH);
 
-        JPanel leftPanel = new JPanel();
-        leftPanel.add(new JLabel(""));
-        leftPanel.setPreferredSize(new Dimension(250, getHeight()));
-        leftPanel.setBorder(BorderFactory.createTitledBorder("Left Panel"));
+        JPanel leftPanel = createLeftPanel();
         mainPanel.add(leftPanel, BorderLayout.WEST);
 
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
         newInvoiceView = new NewInvoiceView();
-        contentPanel.add(newInvoiceView);
+        contentPanel.add(new JLabel("aaa"), COMPANY_CARD);
+        contentPanel.add(newInvoiceView, INVOICE_CARD);
 
 //        createButton("First");
 //        createButton("Second");
+    }
+
+    private JPanel createLeftPanel() {
+        Poprawić działanie przycisków w lewym panelu.
+        JPanel leftPanel = new JPanel();
+        leftPanel.add(new JLabel(""));
+        leftPanel.setPreferredSize(new Dimension(250, getHeight()));
+        leftPanel.setBorder(BorderFactory.createTitledBorder("Left Panel"));
+        JButton firmyButton = new JButton("Firmy");
+        firmyButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, COMPANY_CARD);
+            }
+        });
+
+        leftPanel.add(firmyButton);
+        JButton invoiceButton = new JButton("Nowa faktura");
+        invoiceButton.addActionListener(new AbstractAction() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                cardLayout.show(contentPanel, INVOICE_CARD);
+            }
+        });
+        leftPanel.add(invoiceButton);
+        return leftPanel;
     }
 
 
