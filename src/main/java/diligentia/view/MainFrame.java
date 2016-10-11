@@ -56,7 +56,10 @@ public class MainFrame extends JFrame {
         mainPanel.add(contentPanel, BorderLayout.CENTER);
 
         newInvoiceView = new NewInvoiceView();
-        contentPanel.add(new JLabel("aaa"), COMPANY_CARD);
+        newInvoiceView.setVisible(false);
+        JLabel aaa = new JLabel("firmy");
+        aaa.setVisible(false);
+        contentPanel.add(aaa, COMPANY_CARD);
         contentPanel.add(newInvoiceView, INVOICE_CARD);
 
 //        createButton("First");
@@ -64,7 +67,6 @@ public class MainFrame extends JFrame {
     }
 
     private JPanel createLeftPanel() {
-        Poprawić działanie przycisków w lewym panelu.
         JPanel leftPanel = new JPanel();
         leftPanel.add(new JLabel(""));
         leftPanel.setPreferredSize(new Dimension(250, getHeight()));
