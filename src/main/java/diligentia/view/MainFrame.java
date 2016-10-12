@@ -68,25 +68,13 @@ public class MainFrame extends JFrame {
 
     private JPanel createLeftPanel() {
         JPanel leftPanel = new JPanel();
-        leftPanel.add(new JLabel(""));
+        leftPanel.setLayout(new BoxLayout(leftPanel, BoxLayout.PAGE_AXIS));
+
         leftPanel.setPreferredSize(new Dimension(250, getHeight()));
         leftPanel.setBorder(BorderFactory.createTitledBorder("Left Panel"));
-        JButton firmyButton = new JButton("Firmy");
-        firmyButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPanel, COMPANY_CARD);
-            }
-        });
-
+        JButton firmyButton = new LeftJButton("Firmy", COMPANY_CARD);
         leftPanel.add(firmyButton);
-        JButton invoiceButton = new JButton("Nowa faktura");
-        invoiceButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                cardLayout.show(contentPanel, INVOICE_CARD);
-            }
-        });
+        JButton invoiceButton = new LeftJButton("Nowa faktura", INVOICE_CARD);
         leftPanel.add(invoiceButton);
         return leftPanel;
     }
@@ -113,5 +101,18 @@ public class MainFrame extends JFrame {
 
     public void refreshTable(List<Article> articles) {
         newInvoiceView.reload(articles);
+    }
+
+    private class LeftJButton extends JButton {
+
+        public LeftJButton(String labelText, String cardID) {
+            super(labelText);
+            addActionListener(new AbstractAction() {
+                @Override
+                public void actionPerformed(ActionEvent e) {
+                    cardLayout.show(contentPanel, cardID);
+                }
+            });
+        }
     }
 }
