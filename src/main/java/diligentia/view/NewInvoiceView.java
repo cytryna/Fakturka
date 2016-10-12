@@ -17,9 +17,7 @@ public class NewInvoiceView extends JPanel {
 	private ArticleTableModel model;
 
 	public NewInvoiceView() {
-
 		init();
-		setBorder(BorderFactory.createLineBorder(Color.magenta));
 	}
 
 	private void init() {
@@ -109,6 +107,9 @@ public class NewInvoiceView extends JPanel {
 		model.reload(articles);
 
 	}
+
+	//TODO-rwichrowski  liczby na słowa
+	// http://www.algorytm.org/inne/zamiana-liczby-na-slowa-z-polska-gramatyka/zlns-gramatyka-j.html
 
 	// https://examples.javacodegeeks.com/core-java/java-swing-mvc-example/
 	// lub inne

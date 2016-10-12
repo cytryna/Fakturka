@@ -4,7 +4,7 @@ import java.awt.*;
 
 public class GridBagConstraintsBuilder {
 
-    private static final int DEFAULT_INSET = 10;
+    public static final int DEFAULT_INSET = 10;
     private final GridBagConstraints instance;
 
     private GridBagConstraintsBuilder(GridBagConstraints instance) {

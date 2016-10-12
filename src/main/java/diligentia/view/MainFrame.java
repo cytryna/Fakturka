@@ -1,10 +1,12 @@
 package diligentia.view;
 
 import diligentia.model.Article;
+import diligentia.model.Company;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
+import javax.swing.text.ComponentView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.util.*;
@@ -20,6 +22,7 @@ public class MainFrame extends JFrame {
     private JPanel contentPanel = new JPanel();
     private NewInvoiceView newInvoiceView;
     private CardLayout cardLayout;
+    private CompanyView companyView;
 
     public MainFrame() {
         init();
@@ -57,9 +60,9 @@ public class MainFrame extends JFrame {
 
         newInvoiceView = new NewInvoiceView();
         newInvoiceView.setVisible(false);
-        JLabel aaa = new JLabel("firmy");
-        aaa.setVisible(false);
-        contentPanel.add(aaa, COMPANY_CARD);
+        companyView = new CompanyView();
+        companyView.setVisible(false);
+        contentPanel.add(companyView, COMPANY_CARD);
         contentPanel.add(newInvoiceView, INVOICE_CARD);
 
 //        createButton("First");
@@ -101,6 +104,10 @@ public class MainFrame extends JFrame {
 
     public void refreshTable(List<Article> articles) {
         newInvoiceView.reload(articles);
+    }
+
+    public void refreshCompanyTable(List<Company> all) {
+        companyView.reload(all);
     }
 
     private class LeftJButton extends JButton {

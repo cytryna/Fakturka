@@ -41,13 +41,13 @@ public class MainController {
         for (Company company : all) {
             System.err.println("a"+company.getTaxIdentificationNumber());
         }
+        frame.refreshCompanyTable(all);
+
 //        all.stream().forEach(article -> System.err.println("article:"+article.getName()));
 
 //        frame.refreshTable(articleDAO.findAll());
-        articles.add(new Article(1, "Silnik", "opis", 3, 3.0, 2));
-        articles.add(new Article(2, "Alternator", "opis", 4, 4.0, 4));
 
-        frame.refreshTable(articles);
+        refreshTable();
 
         frame.setExtendedState(frame.getExtendedState() | JFrame.MAXIMIZED_BOTH);
         frame.setSize(new Dimension(1200, 800));
