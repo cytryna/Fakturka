@@ -1,11 +1,15 @@
 package diligentia.view;
 
+import com.itextpdf.text.DocumentException;
+import diligentia.iText.Printer;
 import diligentia.model.Article;
 import diligentia.model.Company;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
@@ -59,7 +63,12 @@ public class NewInvoiceView extends JPanel {
 		add(refresh,constraints().withPosition(0, 4).build());
 
 		JButton printButton = new JButton("Drukuj");
-		printButton.addActionListener(e -> drukuj());
+		printButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				drukuj();
+			}
+		});
 		add(printButton,constraints().withPosition(1, 4).build());
 
 
@@ -69,7 +78,15 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	private void drukuj() {
-		System.err.println("Drukowanie");
+		Printer printer = new Printer();
+		try {
+			printer.print();
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 
     private Component createArticleTable() {
