@@ -59,21 +59,17 @@ public class NewInvoiceView extends JPanel {
 		add(refresh,constraints().withPosition(0, 4).build());
 
 		JButton printButton = new JButton("Drukuj");
-		printButton.addActionListener(new AbstractAction() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				List<Article> articles = new ArrayList<>();
-				articles.add(new Article(3, "Koło", "opis", 3, 3.0, 2));
-				articles.add(new Article(4, "szyba", "opis", 4, 4.0, 4));
-				reload(articles);
-			}
-		});
+		printButton.addActionListener(e -> drukuj());
 		add(printButton,constraints().withPosition(1, 4).build());
 
 
 		add(createArticleTable(),
                 fillDefaults().withPosition(0, 5).withGridWidth(2).build());
 
+	}
+
+	private void drukuj() {
+		System.err.println("Drukowanie");
 	}
 
     private Component createArticleTable() {

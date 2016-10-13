@@ -36,7 +36,7 @@ public class MainFrame extends JFrame {
         add(scrollPane, BorderLayout.CENTER);
 
         contentPanel.setVisible(true);
-        contentPanel.setBorder(BorderFactory.createTitledBorder("contentPanel"));
+        contentPanel.setBorder(BorderFactory.createTitledBorder("Content Panel"));
         cardLayout = new CardLayout();
         contentPanel.setLayout(cardLayout);
 
