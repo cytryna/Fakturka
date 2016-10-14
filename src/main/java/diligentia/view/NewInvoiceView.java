@@ -1,38 +1,32 @@
 package diligentia.view;
 
-import com.itextpdf.text.DocumentException;
 import diligentia.iText.Printer;
 import diligentia.model.Article;
 import diligentia.model.Company;
+import diligentia.model.Invoice;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.*;
 import java.util.List;
 
+import static diligentia.controller.MainController.SELLER_COMPANY;
 import static diligentia.util.GridBagConstraintsBuilder.constraints;
 import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
 public class NewInvoiceView extends JPanel {
 
-	private ArticleTableModel model;
+	private ArticleTableModel articleTableModel;
+	private Printer printer = new Printer();
+	private Invoice invoiceModel;
 
 	public NewInvoiceView() {
 		init();
 	}
 
 	private void init() {
-		Company sellerCompany = new Company();
-		// Wynieść to do jakiegoś wspolnego modelu gdzieś na początku i postaraj się go zapisać i o
-		// dczytać z bazy danych
-		sellerCompany.setTaxIdentificationNumber("NIP 775-000-78-54");
-		sellerCompany.setName("wich-mot edward Wichrowski");
-		sellerCompany.setPostCode("09-500");
-		sellerCompany.setCity("Gostynin");
-		sellerCompany.setStreet("ul. Chopina 4");
 
 		Company customerCompany = new Company();
 		customerCompany.setTaxIdentificationNumber("NIP 465-884-55-22");
@@ -45,7 +39,7 @@ public class NewInvoiceView extends JPanel {
 		add(new JTextField("Faktura Vat"), constraints().withPosition(0, 0).build());
 		add(new JTextField("15/2016"), constraints().withPosition(0, 1).build());
 		add(new JTextField("Warszawa 2015-12-29"), constraints().withPosition(0, 2).build());
-		add(createCompanyPanel("Sprzedwaca", sellerCompany),
+		add(createCompanyPanel("Sprzedwaca", SELLER_COMPANY),
 			fillDefaults().withPosition(0, 3).build());
 		add(createCompanyPanel("Nabywca", customerCompany),
 			fillDefaults().withPosition(1, 3).build());
@@ -78,21 +72,13 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	private void drukuj() {
-		Printer printer = new Printer();
-		try {
-			printer.print();
-		} catch (DocumentException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-
+		printer.print();
 	}
 
     private Component createArticleTable() {
 		JTable table = new JTable();
-		model = new ArticleTableModel();
-		table.setModel(model);
+		articleTableModel = new ArticleTableModel();
+		table.setModel(articleTableModel);
 		JScrollPane tableScrollPane = new JScrollPane(table);
 		tableScrollPane.setPreferredSize(new Dimension(700, 182));
 
@@ -117,7 +103,7 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	public void reload(List<Article> articles) {
-		model.reload(articles);
+		articleTableModel.reload(articles);
 
 	}
 

@@ -1,23 +1,20 @@
 package diligentia.controller;
 
-import br.com.yaw.ssjpac.ui.ListArticleFrame;
+import java.awt.*;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.PostConstruct;
+import javax.swing.*;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import diligentia.app.PrepareDataUtil;
-import diligentia.dao.ArticleDAO;
 import diligentia.dao.CompanyRepository;
 import diligentia.model.Article;
 import diligentia.model.Company;
 import diligentia.view.MainFrame;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-
-import javax.annotation.PostConstruct;
-import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
-import javax.swing.*;
-import java.awt.*;
-import java.util.*;
-import java.util.List;
 
 @Component
 public class MainController {
@@ -27,6 +24,7 @@ public class MainController {
 
     List<Article> articles = new ArrayList<>();
 
+    public static Company SELLER_COMPANY = new Company("NIP 775-000-78-54", "wich-mot edward Wichrowski", "09-500eeee", "Gostynin", "ul. Chopina 4");
 
     @Autowired
     private MainFrame frame;

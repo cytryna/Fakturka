@@ -20,6 +20,17 @@ public class Company { //TODO-rwichrowski może zrobić to zbstrakcyjną i dodac
 
     private String street;
 
+    public Company() {
+    }
+
+    public Company(String taxIdentificationNumber, String name, String postCode, String city, String street) {
+        this.taxIdentificationNumber = taxIdentificationNumber;
+        this.name = name;
+        this.postCode = postCode;
+        this.city = city;
+        this.street = street;
+    }
+
     public String getTaxIdentificationNumber() {
         return taxIdentificationNumber;
     }
