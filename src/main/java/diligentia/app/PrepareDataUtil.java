@@ -1,6 +1,6 @@
 package diligentia.app;
 
-import diligentia.model.Company;
+import diligentia.entity.Company;
 import org.springframework.stereotype.Component;
 
 import javax.persistence.EntityManager;

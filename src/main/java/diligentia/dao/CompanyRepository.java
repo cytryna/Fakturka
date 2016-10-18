@@ -1,6 +1,6 @@
 package diligentia.dao;
 
-import diligentia.model.Company;
+import diligentia.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

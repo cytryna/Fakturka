@@ -2,7 +2,7 @@ package diligentia.dao;
 
 import java.util.List;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 

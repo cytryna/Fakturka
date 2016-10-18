@@ -1,9 +1,9 @@
 package diligentia.view;
 
 import diligentia.iText.Printer;
-import diligentia.model.Entry;
-import diligentia.model.Company;
-import diligentia.model.Invoice;
+import diligentia.entity.Entry;
+import diligentia.entity.Company;
+import diligentia.entity.Invoice;
 
 import javax.swing.*;
 import java.awt.*;

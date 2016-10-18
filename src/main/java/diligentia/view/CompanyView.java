@@ -9,7 +9,7 @@ import java.util.List;
 
 import javax.swing.*;
 
-import diligentia.model.Company;
+import diligentia.entity.Company;
 
 public class CompanyView extends JPanel {
 

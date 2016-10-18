@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import org.springframework.stereotype.Component;
 
 @Component

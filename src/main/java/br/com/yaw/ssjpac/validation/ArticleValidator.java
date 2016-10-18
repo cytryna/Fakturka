@@ -7,7 +7,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ValidatorFactory;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import org.springframework.stereotype.Component;
 
 

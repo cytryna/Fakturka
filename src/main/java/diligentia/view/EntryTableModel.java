@@ -1,6 +1,6 @@
 package diligentia.view;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.List;

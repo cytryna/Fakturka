@@ -7,13 +7,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import diligentia.app.PrepareDataUtil;
 import diligentia.dao.CompanyRepository;
-import diligentia.model.Company;
+import diligentia.entity.Company;
 import diligentia.view.MainFrame;
 
 @Component

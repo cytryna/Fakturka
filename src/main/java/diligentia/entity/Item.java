@@ -1,4 +1,6 @@
-package diligentia.model;
+package diligentia.entity;
+
+import diligentia.model.Unit;
 
 import javax.persistence.*;
 import javax.validation.constraints.Min;

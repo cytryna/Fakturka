@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import org.springframework.stereotype.Component;
 
 

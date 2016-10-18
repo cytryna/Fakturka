@@ -1,7 +1,7 @@
 package diligentia.view;
 
-import diligentia.model.Entry;
-import diligentia.model.Company;
+import diligentia.entity.Entry;
+import diligentia.entity.Company;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;

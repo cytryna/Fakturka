@@ -1,4 +1,4 @@
-package diligentia.model;
+package diligentia.entity;
 
 import java.util.List;
 

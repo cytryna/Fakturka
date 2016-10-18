@@ -13,7 +13,7 @@ import br.com.yaw.ssjpac.action.ConditionalAction;
 import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import br.com.yaw.ssjpac.ui.IncluirMercadoriaFrame;
 import br.com.yaw.ssjpac.validation.Validator;
 

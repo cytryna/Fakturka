@@ -2,7 +2,7 @@ package br.com.yaw.ssjpac.event;
 
 import java.util.List;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 
 /**
  * Evento deve ser gerado durante a pesquisa de mercadorias.

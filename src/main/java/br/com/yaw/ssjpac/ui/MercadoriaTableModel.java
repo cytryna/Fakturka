@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 
 /**
  * Define um TableModel para entidade <code>Entry</code>, considerando as colunas:

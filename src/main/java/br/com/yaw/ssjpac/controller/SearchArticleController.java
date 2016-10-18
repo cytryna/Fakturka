@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 import br.com.yaw.ssjpac.ui.SearchArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;

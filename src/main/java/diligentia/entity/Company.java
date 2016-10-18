@@ -1,4 +1,4 @@
-package diligentia.model;
+package diligentia.entity;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

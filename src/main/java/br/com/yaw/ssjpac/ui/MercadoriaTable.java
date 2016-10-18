@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 
 
 public class MercadoriaTable extends JTable {

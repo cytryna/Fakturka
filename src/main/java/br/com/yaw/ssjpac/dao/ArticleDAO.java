@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-import diligentia.model.Entry;
+import diligentia.entity.Entry;
 @Deprecated
 public interface ArticleDAO extends JpaRepository<Entry, Integer> {
 
