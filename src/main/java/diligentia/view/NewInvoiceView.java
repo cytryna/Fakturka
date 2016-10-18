@@ -72,7 +72,9 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	private void drukuj() {
-		printer.print();
+		printer.printAndOpen();
+
+
 	}
 
     private Component createArticleTable() {

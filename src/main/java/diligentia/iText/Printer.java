@@ -1,11 +1,14 @@
 package diligentia.iText;
 
 import com.itextpdf.text.*;
+import com.itextpdf.text.Font;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
+import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -18,7 +21,25 @@ public class Printer {
 	public static final String RESULT = System.getProperty("user.home") + File.separator
 		+ "fakturka/hello.pdf";
 
-	public void print() {
+
+	public void openFile(String path) {
+		if (Desktop.isDesktopSupported()) {
+			try {
+				File myFile = new File(path);
+				Desktop.getDesktop().open(myFile);
+			} catch (IOException ex) {
+				// no application registered for PDFs
+			}
+		}
+	}
+
+
+	public void printAndOpen() {
+		print();
+		openFile(RESULT);
+	}
+
+	private void print() {
 		// step 1
 		try {
 			Document document = new Document();
@@ -126,6 +147,5 @@ public class Printer {
 		}
 
 		// TODO-rwichrowski Dodać bibliotekę log4J do logowania bugów
-
 	}
 }
