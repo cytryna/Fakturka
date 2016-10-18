@@ -1,18 +1,22 @@
 package diligentia.oracle;
 
+
+import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 
 /**
  * Created by rwichrowski on 14.10.16.
  */
 public class AbstractController implements PropertyChangeListener {
 
-    private ArrayList<abstractviewpanel> registeredViews;
-    private ArrayList<abstractmodel> registeredModels;
+    private ArrayList<AbstractViewPanel> registeredViews;
+    private ArrayList<AbstractModel> registeredModels;
 
     public AbstractController() {
-        registeredViews = new ArrayList<abstractviewpanel>();
-        registeredModels = new ArrayList<abstractmodel>();
+        registeredViews = new ArrayList<AbstractViewPanel>();
+        registeredModels = new ArrayList<AbstractModel>();
     }
 
 

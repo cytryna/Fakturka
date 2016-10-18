@@ -23,12 +23,12 @@ public class TextElementModel extends AbstractModel
      */
     public void initDefault() {
 
-        setOpacity(89);
-        setRotation(0);
+//        setOpacity(89);
+//        setRotation(0);
         setText("Sample Text");
         setFont(new Font("Arial", Font.BOLD, 24));
-        setX(50);
-        setY(50);
+//        setX(50);
+//        setY(50);
 
     }
 
