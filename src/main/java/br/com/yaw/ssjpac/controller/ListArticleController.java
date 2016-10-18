@@ -4,10 +4,9 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.swing.SwingUtilities;
 
-import diligentia.model.Article;
+import diligentia.model.Entry;
 import br.com.yaw.ssjpac.ui.ListArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -74,7 +73,7 @@ public class ListArticleController extends AbstractController {
 		this.frame.getTable().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
 				if (event.getClickCount() == 2) {
-					Article m = frame.getTable().getMercadoriaSelected();
+					Entry m = frame.getTable().getMercadoriaSelected();
 					if (m != null) {
 						includeArticleController.show(m);
 					}
@@ -116,7 +115,7 @@ public class ListArticleController extends AbstractController {
 			public void handleEvent(final BuscarMercadoriaEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						List<Article> list = event.getTarget();
+						List<Entry> list = event.getTarget();
 						if (list != null) {
 							frame.refreshTable(list);
 						}

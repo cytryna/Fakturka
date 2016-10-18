@@ -13,7 +13,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
-import diligentia.model.Article;
+import diligentia.model.Entry;
 import org.springframework.stereotype.Component;
 
 
@@ -114,7 +114,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		return painel;
 	}
 	
-	private Article loadMercadoriaFromPanel() {
+	private Entry loadMercadoriaFromPanel() {
 		String nome = null;
 		if (!tfNome.getText().trim().isEmpty()) {
 			nome = tfNome.getText().trim();
@@ -136,7 +136,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		Double preco = null;
 		try {
 			if (!tfPreco.getText().trim().isEmpty()) {
-				preco = Article.formatStringToPreco(tfPreco.getText());
+				preco = Entry.formatStringToPreco(tfPreco.getText());
 			}
 		} catch (ParseException nex) {
 			throw new RuntimeException("Erro durante a conversão do campo preço (Double).\nConteudo inválido!");
@@ -149,7 +149,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		
 		Integer version = null;
 
-		return new Article(id, nome, descricao, amount, preco, version);
+		return new Entry(id, nome, descricao, amount, preco, version);
 	}
 	
 	public void resetForm() {
@@ -161,7 +161,7 @@ public class IncluirMercadoriaFrame extends JFrame {
 		bExcluir.setVisible(false);
 	}
 	
-	private void populaTextFields(Article m){
+	private void populaTextFields(Entry m){
 		tfId.setValue(m.getId());
 		tfNome.setText(m.getName());
 		tfDescricao.setText(m.getDescription());
@@ -170,10 +170,10 @@ public class IncluirMercadoriaFrame extends JFrame {
 	}
 	
 	/**
-	 * Limpa e carrega os campos da tela de acordo com objeto <code>Article</code>.
-	 * @param m referência da <code>Article</code> que deve ser apresentada na tela.
+	 * Limpa e carrega os campos da tela de acordo com objeto <code>Entry</code>.
+	 * @param m referência da <code>Entry</code> que deve ser apresentada na tela.
 	 */
-	public void setMercadoria(Article m){
+	public void setMercadoria(Entry m){
 		resetForm();
 		if (m != null) {
 			populaTextFields(m);
@@ -182,14 +182,14 @@ public class IncluirMercadoriaFrame extends JFrame {
 	}
 	
 	/**
-	 * @return uma nova instância de <code>Article</code> com os dados preenchidos do campos na tela.
+	 * @return uma nova instância de <code>Entry</code> com os dados preenchidos do campos na tela.
 	 */
-	public Article getMercadoria() {
+	public Entry getMercadoria() {
 		return loadMercadoriaFromPanel();
 	}
 	
 	/**
-	 * @return o identificador da <code>Article</code> em edição. Retorna <code>null</code> em modo de inclusão.
+	 * @return o identificador da <code>Entry</code> em edição. Retorna <code>null</code> em modo de inclusão.
 	 */
 	public Integer getMercadoriaId() {
 		try {

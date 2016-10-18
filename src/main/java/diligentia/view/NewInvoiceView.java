@@ -1,7 +1,7 @@
 package diligentia.view;
 
 import diligentia.iText.Printer;
-import diligentia.model.Article;
+import diligentia.model.Entry;
 import diligentia.model.Company;
 import diligentia.model.Invoice;
 
@@ -9,7 +9,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.*;
 import java.util.List;
 
 import static diligentia.controller.MainController.SELLER_COMPANY;
@@ -18,7 +17,7 @@ import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
 public class NewInvoiceView extends JPanel {
 
-	private ArticleTableModel articleTableModel;
+	private EntryTableModel entryTableModel;
 	private Printer printer = new Printer();
 	private Invoice invoiceModel;
 
@@ -44,14 +43,11 @@ public class NewInvoiceView extends JPanel {
 		add(createCompanyPanel("Nabywca", customerCompany),
 			fillDefaults().withPosition(1, 3).build());
 
-		JButton refresh = new JButton("Odśwież");
+		JButton refresh = new JButton("Dodaj nowy artykuł");
 		refresh.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				List<Article> articles = new ArrayList<>();
-				articles.add(new Article(3, "Koło", "opis", 3, 3.0, 2));
-				articles.add(new Article(4, "szyba", "opis", 4, 4.0, 4));
-				reload(articles);
+				entryTableModel.addNewEntry();
 			}
 		});
 		add(refresh,constraints().withPosition(0, 4).build());
@@ -66,7 +62,7 @@ public class NewInvoiceView extends JPanel {
 		add(printButton,constraints().withPosition(1, 4).build());
 
 
-		add(createArticleTable(),
+		add(createEntryTable(),
                 fillDefaults().withPosition(0, 5).withGridWidth(2).build());
 
 	}
@@ -77,10 +73,10 @@ public class NewInvoiceView extends JPanel {
 
 	}
 
-    private Component createArticleTable() {
+    private Component createEntryTable() {
 		JTable table = new JTable();
-		articleTableModel = new ArticleTableModel();
-		table.setModel(articleTableModel);
+		entryTableModel = new EntryTableModel();
+		table.setModel(entryTableModel);
 		JScrollPane tableScrollPane = new JScrollPane(table);
 		tableScrollPane.setPreferredSize(new Dimension(700, 182));
 
@@ -104,8 +100,8 @@ public class NewInvoiceView extends JPanel {
 		return jPanel;
 	}
 
-	public void reload(List<Article> articles) {
-		articleTableModel.reload(articles);
+	public void reload(List<Entry> entries) {
+		entryTableModel.reload(entries);
 
 	}
 

@@ -1,15 +1,13 @@
 package diligentia.view;
 
-import diligentia.model.Article;
+import diligentia.model.Entry;
 import diligentia.model.Company;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import javax.swing.*;
-import javax.swing.text.ComponentView;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.util.*;
 import java.util.List;
 
 @Component
@@ -102,8 +100,8 @@ public class MainFrame extends JFrame {
         contentPanel.add(component);
     }
 
-    public void refreshTable(List<Article> articles) {
-        newInvoiceView.reload(articles);
+    public void refreshTable(List<Entry> entries) {
+        newInvoiceView.reload(entries);
     }
 
     public void refreshCompanyTable(List<Company> all) {

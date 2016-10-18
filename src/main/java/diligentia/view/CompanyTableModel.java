@@ -20,8 +20,8 @@ public class CompanyTableModel extends AbstractTableModel {
 
     public CompanyTableModel(){}
 
-    public void reload(List<Company> articles) {
-        this.companies = articles;
+    public void reload(List<Company> companies) {
+        this.companies = companies;
         //atualiza o componente na tela
         fireTableDataChanged();
     }

@@ -13,12 +13,12 @@ import br.com.yaw.ssjpac.action.ConditionalAction;
 import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
-import diligentia.model.Article;
+import diligentia.model.Entry;
 import br.com.yaw.ssjpac.ui.IncluirMercadoriaFrame;
 import br.com.yaw.ssjpac.validation.Validator;
 
 /**
- * Define a <code>Controller</code> responsável por gerir a tela de inclusão/edição de <code>Article</code>.
+ * Define a <code>Controller</code> responsável por gerir a tela de inclusão/edição de <code>Entry</code>.
  * 
  * <p>
  *  <code>IncludeArticleController</code> é mapeada como <code>@Component</code> do Spring.
@@ -41,7 +41,7 @@ public class IncludeArticleController extends AbstractController {
 	private IncluirMercadoriaFrame frame;
 	
 	@Autowired
-	private Validator<Article> validador;
+	private Validator<Entry> validador;
 	
 	@Autowired
 	private ArticleDAO dao;
@@ -70,7 +70,7 @@ public class IncludeArticleController extends AbstractController {
 				.addConditional(new BooleanExpression() {
 					
 					public boolean conditional() {
-						Article m = frame.getMercadoria();
+						Entry m = frame.getMercadoria();
 						String msg = validador.validate(m);
 						if (!"".equals(msg == null ? "" : msg)) {
 							JOptionPane.showMessageDialog(frame, msg, "Validação", JOptionPane.INFORMATION_MESSAGE);
@@ -80,7 +80,7 @@ public class IncludeArticleController extends AbstractController {
 					}
 				})
 				.addAction(new AbstractAction() {
-						private Article m;
+						private Entry m;
 						
 						@Transactional
 						@Override
@@ -99,7 +99,7 @@ public class IncludeArticleController extends AbstractController {
 		
 		registerAction(frame.getExcluirButton(), 
 			new AbstractAction() {
-				private Article m;
+				private Entry m;
 					
 				@Transactional
 				@Override
@@ -120,13 +120,13 @@ public class IncludeArticleController extends AbstractController {
 	}
 	
 	public void show() {
-		frame.setTitle("Incluir Article");
+		frame.setTitle("Incluir Entry");
 		frame.setVisible(true);
 	}
 	
-	public void show(Article m) {
+	public void show(Entry m) {
 		frame.setMercadoria(m);
-		frame.setTitle("Editar Article");
+		frame.setTitle("Editar Entry");
 		frame.setVisible(true);
 	}
 	

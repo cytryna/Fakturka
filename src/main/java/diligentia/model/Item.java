@@ -13,7 +13,7 @@ public class Item {
     @GeneratedValue
     private int id;
 
-    private Article article;
+    private Entry entry;
 
     @NotNull
     @Min(value=1)

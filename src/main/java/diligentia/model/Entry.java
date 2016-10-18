@@ -14,7 +14,7 @@ import javax.validation.constraints.Size;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-public class Article extends AbstractPersistable<Integer> {
+public class Entry extends AbstractPersistable<Integer> {
 	
 	@NotNull @Size(min=5, max=200)
 	private String name;
@@ -34,10 +34,10 @@ public class Article extends AbstractPersistable<Integer> {
 	
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getNumberInstance(new Locale("pl","PL"));
 	
-	public Article(){
+	public Entry(){
 	}
 	
-	public Article(Integer id, String name, String description, Integer amount, Double price, Integer version) {
+	public Entry(Integer id, String name, String description, Integer amount, Double price, Integer version) {
 		setId(id);
 		this.name = name;
 		this.description = description;
@@ -71,6 +71,9 @@ public class Article extends AbstractPersistable<Integer> {
 	}
 	
 	public Double getPrice() {
+		if (price == null) {
+			return Double.valueOf(0);
+		}
 		return price;
 	}
 
@@ -86,7 +89,7 @@ public class Article extends AbstractPersistable<Integer> {
 		return convertPriceToString(this.price);
 	}
 
-		public static String convertPriceToString(double price) {
+	public static String convertPriceToString(double price) {
 		return NUMBER_FORMAT.format(price);
 	}
 

@@ -1,17 +1,17 @@
 package br.com.yaw.ssjpac.event;
 
-import diligentia.model.Article;
+import diligentia.model.Entry;
 
 /**
- * Evento deve ser gerado durante a inclusão de uma <code>Article</code>.
+ * Evento deve ser gerado durante a inclusão de uma <code>Entry</code>.
  * 
- * <p>Recebe a referência da <code>Article</code> que foi incluida.</p>
+ * <p>Recebe a referência da <code>Entry</code> que foi incluida.</p>
  * 
  * @author YaW Tecnologia
  */
-public class IncluirMercadoriaEvent extends AbstractEvent<Article> {
+public class IncluirMercadoriaEvent extends AbstractEvent<Entry> {
 	
-	public IncluirMercadoriaEvent(Article m) {
+	public IncluirMercadoriaEvent(Entry m) {
 		super(m);
 	}
 }

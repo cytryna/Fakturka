@@ -7,13 +7,12 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.ValidatorFactory;
 
+import diligentia.model.Entry;
 import org.springframework.stereotype.Component;
-
-import diligentia.model.Article;
 
 
 @Component
-public class ArticleValidator implements Validator<Article> {
+public class ArticleValidator implements Validator<Entry> {
 	
 	private static ValidatorFactory factory;
 	
@@ -21,15 +20,15 @@ public class ArticleValidator implements Validator<Article> {
 		factory = buildDefaultValidatorFactory();
 	}
 
-	public String validate(Article m) {
+	public String validate(Entry m) {
 		StringBuilder sb = new StringBuilder();
 		if (m != null) {
 			javax.validation.Validator validator = factory.getValidator();
-			Set<ConstraintViolation<Article>> constraintViolations = validator.validate(m);
+			Set<ConstraintViolation<Entry>> constraintViolations = validator.validate(m);
 			
 			if (!constraintViolations.isEmpty()) {
-				sb.append("Validação da entidade Article\n");
-				for (ConstraintViolation<Article> constraint: constraintViolations) {
+				sb.append("Validação da entidade Entry\n");
+				for (ConstraintViolation<Entry> constraint: constraintViolations) {
 					sb.append(String.format("%n%s: %s", constraint.getPropertyPath(), constraint.getMessage()));
 				}
 			}

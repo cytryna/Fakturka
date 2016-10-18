@@ -7,12 +7,12 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 
+import diligentia.model.Entry;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import diligentia.app.PrepareDataUtil;
 import diligentia.dao.CompanyRepository;
-import diligentia.model.Article;
 import diligentia.model.Company;
 import diligentia.view.MainFrame;
 
@@ -22,7 +22,7 @@ public class MainController {
     @Autowired
     private PrepareDataUtil prepareDataUtil;
 
-    List<Article> articles = new ArrayList<>();
+    List<Entry> entries = new ArrayList<>();
 
     public static Company SELLER_COMPANY = new Company("NIP 775-000-78-54", "wich-mot edward Wichrowski", "09-500eeee", "Gostynin", "ul. Chopina 4");
 
@@ -56,9 +56,9 @@ public class MainController {
 
     private void refreshTable() {
 //        this.frame.refreshTable(this.articleDAO.findAll());
-        articles.add(new Article(1, "Silnik", "opis", 3, 3.0, 2));
-        articles.add(new Article(2, "Alternator", "opis", 4, 4.0, 4));
-        frame.refreshTable(articles);
+        entries.add(new Entry(1, "Silnik", "opis", 3, 3.0, 2));
+        entries.add(new Entry(2, "Alternator", "opis", 4, 4.0, 4));
+        frame.refreshTable(entries);
 
     }
 
