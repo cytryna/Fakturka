@@ -41,6 +41,7 @@ public class MainController {
         }
         frame.refreshCompanyTable(all);
 
+
 //        all.stream().forEach(article -> System.err.println("article:"+article.getName()));
 
 //        frame.refreshTable(articleDAO.findAll());

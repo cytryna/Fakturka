@@ -7,9 +7,6 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
-/**
- * Created by radek on 08.10.2016.
- */
 @Component
 public class PrepareDataUtil {
     private static EntityManagerFactory entityManagerFactory = Persistence.createEntityManagerFactory("myDatabase");

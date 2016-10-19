@@ -24,7 +24,6 @@ public class MainFrame extends JFrame {
 
     public MainFrame() {
         init();
-
     }
 
     @PostConstruct
