@@ -14,7 +14,7 @@ import diligentia.model.Unit;
 import org.springframework.data.jpa.domain.AbstractPersistable;
 
 @Entity
-public class Entry extends AbstractPersistable<Integer> {
+public class Product extends AbstractPersistable<Integer> {
 	
 	@NotNull @Size(min=5, max=200)
 	private String name;
@@ -34,10 +34,10 @@ public class Entry extends AbstractPersistable<Integer> {
 	
 	private static final NumberFormat NUMBER_FORMAT = NumberFormat.getNumberInstance(new Locale("pl","PL"));
 	
-	public Entry(){
+	public Product(){
 	}
 	
-	public Entry(Integer id, String name, String description, Integer amount, Double price, Integer version) {
+	public Product(Integer id, String name, String description, Integer amount, Double price, Integer version) {
 		setId(id);
 		this.name = name;
 		this.description = description;

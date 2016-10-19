@@ -1,6 +1,6 @@
 package diligentia.view;
 
-import diligentia.entity.Entry;
+import diligentia.entity.Product;
 import diligentia.entity.Company;
 import org.springframework.stereotype.Component;
 
@@ -100,7 +100,7 @@ public class MainFrame extends JFrame {
         contentPanel.add(component);
     }
 
-    public void refreshTable(List<Entry> entries) {
+    public void refreshTable(List<Product> entries) {
         newInvoiceView.reload(entries);
     }
 

@@ -4,10 +4,10 @@ import java.util.List;
 
 import javax.swing.table.AbstractTableModel;
 
-import diligentia.entity.Entry;
+import diligentia.entity.Product;
 
 /**
- * Define um TableModel para entidade <code>Entry</code>, considerando as colunas:
+ * Define um TableModel para entidade <code>Product</code>, considerando as colunas:
  * <ul>
  *   <li>Nome;</li>
  *   <li>Descrição;</li>
@@ -19,7 +19,7 @@ import diligentia.entity.Entry;
  */
 public class MercadoriaTableModel extends AbstractTableModel {
 
-	private List<Entry> entries;
+	private List<Product> entries;
 	
 	private String[] colNomes = { "Nome", "Descricao", "Preco", "Quantidade" };
 	
@@ -27,7 +27,7 @@ public class MercadoriaTableModel extends AbstractTableModel {
 	
 	public MercadoriaTableModel(){}
 	
-	public void reload(List<Entry> entries) {
+	public void reload(List<Product> entries) {
 		this.entries = entries;
 		//atualiza o componente na tela
 		fireTableDataChanged();
@@ -58,14 +58,14 @@ public class MercadoriaTableModel extends AbstractTableModel {
 
 	@Override
 	public Object getValueAt(int linha, int coluna) {
-		Entry m = entries.get(linha);
+		Product m = entries.get(linha);
 		switch (coluna) {
 		case 0:
 			return m.getName();
 		case 1:
 			return m.getDescription();
 		case 2:
-			return Entry.convertPriceToString(m.getPrice());
+			return Product.convertPriceToString(m.getPrice());
 		case 3:
 			return m.getAmount();
 		default:
@@ -78,7 +78,7 @@ public class MercadoriaTableModel extends AbstractTableModel {
 		return false;
 	}
 	
-	public Entry getMercadoriaAt(int index) {
+	public Product getMercadoriaAt(int index) {
 		return entries.get(index);
 	}
 	

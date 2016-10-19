@@ -1,7 +1,7 @@
 package diligentia.view;
 
+import diligentia.entity.Product;
 import diligentia.iText.Printer;
-import diligentia.entity.Entry;
 import diligentia.entity.Company;
 import diligentia.entity.Invoice;
 
@@ -17,7 +17,7 @@ import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
 public class NewInvoiceView extends JPanel {
 
-	private EntryTableModel entryTableModel;
+	private ProductTableModel productTableModel;
 	private Printer printer = new Printer();
 	private Invoice invoiceModel;
 
@@ -47,7 +47,7 @@ public class NewInvoiceView extends JPanel {
 		refresh.addActionListener(new AbstractAction() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				entryTableModel.addNewEntry();
+				productTableModel.addNewProduct();
 			}
 		});
 		add(refresh,constraints().withPosition(0, 4).build());
@@ -62,7 +62,7 @@ public class NewInvoiceView extends JPanel {
 		add(printButton,constraints().withPosition(1, 4).build());
 
 
-		add(createEntryTable(),
+		add(createProductTable(),
                 fillDefaults().withPosition(0, 5).withGridWidth(2).build());
 
 	}
@@ -73,10 +73,10 @@ public class NewInvoiceView extends JPanel {
 
 	}
 
-    private Component createEntryTable() {
+    private Component createProductTable() {
 		JTable table = new JTable();
-		entryTableModel = new EntryTableModel();
-		table.setModel(entryTableModel);
+		productTableModel = new ProductTableModel();
+		table.setModel(productTableModel);
 		JScrollPane tableScrollPane = new JScrollPane(table);
 		tableScrollPane.setPreferredSize(new Dimension(700, 182));
 
@@ -100,8 +100,8 @@ public class NewInvoiceView extends JPanel {
 		return jPanel;
 	}
 
-	public void reload(List<Entry> entries) {
-		entryTableModel.reload(entries);
+	public void reload(List<Product> entries) {
+		productTableModel.reload(entries);
 
 	}
 

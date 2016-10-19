@@ -11,7 +11,7 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
-import diligentia.entity.Entry;
+import diligentia.entity.Product;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -27,7 +27,7 @@ public class ListArticleFrame extends JFrame {
 	private JMenuItem menuSobre;
 	
 	public ListArticleFrame() {
-		setTitle("Entry List");
+		setTitle("Product List");
 		
 		inicializaComponentes();
 		adicionaComponentes();
@@ -86,11 +86,11 @@ public class ListArticleFrame extends JFrame {
 		return bFindMercadoria;
 	}
 	
-	public void refreshTable(List<Entry> entries) {
+	public void refreshTable(List<Product> entries) {
 		tabela.reload(entries);
 	}
 	
-	public Entry getSelectedMercadoria() {
+	public Product getSelectedMercadoria() {
 		return tabela.getMercadoriaSelected();
 	}
 	

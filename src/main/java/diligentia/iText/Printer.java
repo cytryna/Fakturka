@@ -118,14 +118,14 @@ public class Printer {
 			String line = "Śćźół:";
 			document.add(new Paragraph(line, t9));
 
-			PdfPTable entryTable = new PdfPTable(2);
+			PdfPTable productTabe = new PdfPTable(2);
 			PdfPCell cellLp = new PdfPCell(new Phrase("Lp"));
 			cellLp.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			entryTable.addCell(cellLp);
+			productTabe.addCell(cellLp);
 			cellLp.setPhrase(new Phrase("Nazwa artykółu", t9));
-			entryTable.addCell(cellLp);
+			productTabe.addCell(cellLp);
 
-			document.add(entryTable);
+			document.add(productTabe);
 
 			document.add(new Paragraph("artykółu Odkud jste?"));
 			document.add(new Paragraph("Uvidíme se za chvilku. Měj se."));

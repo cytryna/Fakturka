@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.annotation.PostConstruct;
 
-import diligentia.entity.Entry;
+import diligentia.entity.Product;
 import br.com.yaw.ssjpac.ui.SearchArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -32,7 +32,7 @@ public class SearchArticleController extends AbstractController {
 		this.frame.addWindowListener(this);
 		
 		registerAction(frame.getBuscarButton(), new AbstractAction() {
-			private List<Entry> list;
+			private List<Product> list;
 			
 			@Override
 			public void action() {

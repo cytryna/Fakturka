@@ -24,13 +24,13 @@ public class CompanyView extends JPanel {
 		setLayout(new GridBagLayout());
 		add(new JButton("Dodaj nową firmę"), constraints().withInsets(DEFAULT_INSET, DEFAULT_INSET, DEFAULT_INSET,
 				DEFAULT_INSET).withPosition(0, 0).build());
-		add(createEntryTable(),
+		add(createProductTable(),
                 fillDefaults().withPosition(0, 1).withGridWidth(2).build());
 		add(Box.createVerticalGlue(),
 				bothConstraint().withPosition(0, 2).build());
 	}
 
-    private Component createEntryTable() {
+    private Component createProductTable() {
 		//TODO-rwichrowski Dodać scrolle do tabeli
 		JTable table = new JTable();
 		model = new CompanyTableModel();

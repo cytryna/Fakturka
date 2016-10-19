@@ -4,7 +4,7 @@ import java.util.List;
 
 import javax.swing.JTable;
 
-import diligentia.entity.Entry;
+import diligentia.entity.Product;
 
 
 public class MercadoriaTable extends JTable {
@@ -16,7 +16,7 @@ public class MercadoriaTable extends JTable {
 		setModel(modelo);
 	}
 	
-	public Entry getMercadoriaSelected() {
+	public Product getMercadoriaSelected() {
 		int i = getSelectedRow();
 		if (i < 0) {
 			return null;
@@ -24,7 +24,7 @@ public class MercadoriaTable extends JTable {
 		return modelo.getMercadoriaAt(i);
 	}
 	
-	public void reload(List<Entry> entries) {
+	public void reload(List<Product> entries) {
 		modelo.reload(entries);
 	}
 }

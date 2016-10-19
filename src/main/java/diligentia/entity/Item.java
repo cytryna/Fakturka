@@ -15,7 +15,7 @@ public class Item {
     @GeneratedValue
     private int id;
 
-    private Entry entry;
+    private Product product;
 
     @NotNull
     @Min(value=1)

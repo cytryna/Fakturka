@@ -6,7 +6,7 @@ import java.util.List;
 
 import javax.swing.SwingUtilities;
 
-import diligentia.entity.Entry;
+import diligentia.entity.Product;
 import br.com.yaw.ssjpac.ui.ListArticleFrame;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -73,7 +73,7 @@ public class ListArticleController extends AbstractController {
 		this.frame.getTable().addMouseListener(new MouseAdapter() {
 			public void mouseClicked(MouseEvent event) {
 				if (event.getClickCount() == 2) {
-					Entry m = frame.getTable().getMercadoriaSelected();
+					Product m = frame.getTable().getMercadoriaSelected();
 					if (m != null) {
 						includeArticleController.show(m);
 					}
@@ -115,7 +115,7 @@ public class ListArticleController extends AbstractController {
 			public void handleEvent(final BuscarMercadoriaEvent event) {
 				SwingUtilities.invokeLater(new Runnable() {
 					public void run() {
-						List<Entry> list = event.getTarget();
+						List<Product> list = event.getTarget();
 						if (list != null) {
 							frame.refreshTable(list);
 						}

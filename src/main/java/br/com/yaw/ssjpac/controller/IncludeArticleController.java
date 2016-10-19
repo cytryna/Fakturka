@@ -3,6 +3,7 @@ package br.com.yaw.ssjpac.controller;
 import javax.annotation.PostConstruct;
 import javax.swing.JOptionPane;
 
+import diligentia.entity.Product;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -13,12 +14,11 @@ import br.com.yaw.ssjpac.action.ConditionalAction;
 import br.com.yaw.ssjpac.dao.ArticleDAO;
 import br.com.yaw.ssjpac.event.DeletarMercadoriaEvent;
 import br.com.yaw.ssjpac.event.IncluirMercadoriaEvent;
-import diligentia.entity.Entry;
 import br.com.yaw.ssjpac.ui.IncluirMercadoriaFrame;
 import br.com.yaw.ssjpac.validation.Validator;
 
 /**
- * Define a <code>Controller</code> responsável por gerir a tela de inclusão/edição de <code>Entry</code>.
+ * Define a <code>Controller</code> responsável por gerir a tela de inclusão/edição de <code>Product</code>.
  * 
  * <p>
  *  <code>IncludeArticleController</code> é mapeada como <code>@Component</code> do Spring.
@@ -41,7 +41,7 @@ public class IncludeArticleController extends AbstractController {
 	private IncluirMercadoriaFrame frame;
 	
 	@Autowired
-	private Validator<Entry> validador;
+	private Validator<Product> validador;
 	
 	@Autowired
 	private ArticleDAO dao;
@@ -70,7 +70,7 @@ public class IncludeArticleController extends AbstractController {
 				.addConditional(new BooleanExpression() {
 					
 					public boolean conditional() {
-						Entry m = frame.getMercadoria();
+						Product m = frame.getMercadoria();
 						String msg = validador.validate(m);
 						if (!"".equals(msg == null ? "" : msg)) {
 							JOptionPane.showMessageDialog(frame, msg, "Validação", JOptionPane.INFORMATION_MESSAGE);
@@ -80,7 +80,7 @@ public class IncludeArticleController extends AbstractController {
 					}
 				})
 				.addAction(new AbstractAction() {
-						private Entry m;
+						private Product m;
 						
 						@Transactional
 						@Override
@@ -99,7 +99,7 @@ public class IncludeArticleController extends AbstractController {
 		
 		registerAction(frame.getExcluirButton(), 
 			new AbstractAction() {
-				private Entry m;
+				private Product m;
 					
 				@Transactional
 				@Override
@@ -120,13 +120,13 @@ public class IncludeArticleController extends AbstractController {
 	}
 	
 	public void show() {
-		frame.setTitle("Incluir Entry");
+		frame.setTitle("Incluir Product");
 		frame.setVisible(true);
 	}
 	
-	public void show(Entry m) {
+	public void show(Product m) {
 		frame.setMercadoria(m);
-		frame.setTitle("Editar Entry");
+		frame.setTitle("Editar Product");
 		frame.setVisible(true);
 	}
 	
