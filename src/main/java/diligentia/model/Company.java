@@ -2,7 +2,7 @@ package diligentia.model;
 
 public class Company {
 
-    private String taxIdentificationNumber;
+   private String taxIdentificationNumber;
 
     private String name;
 
@@ -15,6 +15,13 @@ public class Company {
     public Company() {
     }
 
+    public Company(String taxIdentificationNumber, String name, String postCode, String city, String street) {
+        setTaxIdentificationNumber(taxIdentificationNumber);
+        setName(name);
+        setPostCode(postCode);
+        setCity(city);
+        setStreet(street);
+    }
     public String getTaxIdentificationNumber() {
         return taxIdentificationNumber;
     }
@@ -54,4 +61,5 @@ public class Company {
     public void setStreet(String street) {
         this.street = street;
     }
+
 }

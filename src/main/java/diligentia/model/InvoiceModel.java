@@ -8,8 +8,13 @@ public class InvoiceModel {
 
     private List<ViewInterface> observers;
     private String number;
-    private Company company;
+    private Company customer = new Company();
+    private final Company salesman;
     private List<Item> item;
+
+    public InvoiceModel() {
+        salesman = new Company("NIP 775-000-78-54", "Wich-Mot Edward Wichrowski", "09-500", "Gostynin", "ul. Chopina 4");
+    }
 
     public String getNumber() {
         return number;
@@ -19,12 +24,16 @@ public class InvoiceModel {
         this.number = number;
     }
 
-    public Company getCompany() {
-        return company;
+    public Company getCustomer() {
+        return customer;
     }
 
-    public void setCompany(Company company) {
-        this.company = company;
+    public void setCustomer(Company customer) {
+        this.customer = customer;
+    }
+
+    public Company getSalesman() {
+        return salesman;
     }
 
     public List<Item> getItem() {
@@ -34,4 +43,6 @@ public class InvoiceModel {
     public void setItem(List<Item> item) {
         this.item = item;
     }
+
 }
+

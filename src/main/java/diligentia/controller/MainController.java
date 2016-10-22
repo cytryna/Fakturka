@@ -7,14 +7,13 @@ import java.util.List;
 import javax.annotation.PostConstruct;
 import javax.swing.*;
 
-import diligentia.entity.Product;
+import diligentia.entity.Company;
 import diligentia.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import diligentia.app.PrepareDataUtil;
 import diligentia.dao.CompanyRepository;
-import diligentia.entity.Company;
 import diligentia.view.MainFrame;
 
 @Component
@@ -25,7 +24,7 @@ public class MainController {
 
     List<Item> entries = new ArrayList<>();
 
-    public static Company SELLER_COMPANY = new Company("NIP 775-000-78-54", "wich-mot edward Wichrowski", "09-500eeee", "Gostynin", "ul. Chopina 4");
+
 
     @Autowired
     private MainFrame frame;

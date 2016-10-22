@@ -7,6 +7,8 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import diligentia.model.Company;
+import diligentia.model.InvoiceModel;
 
 import java.awt.*;
 import java.io.File;
@@ -20,6 +22,7 @@ public class Printer {
 	//TODO-rwichrowski Wynieść do jakiś propertisów path foldera na faktury
 	public static final String RESULT = System.getProperty("user.home") + File.separator
 		+ "fakturka/hello.pdf";
+	private InvoiceModel model;
 
 
 	public void openFile(String path) {
@@ -51,8 +54,8 @@ public class Printer {
 			PdfPTable table = new PdfPTable(2);
 			table.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
 			table.setWidthPercentage(100);
-			Phrase salesman = new Phrase(
-				"Wich-mot Edward Wichrowski\n09-500 Goostynin\nul. Szopena 4\nNIP: 775-000-46-84");
+			Phrase salesman = new Phrase("radek"+model.getSalesman().getTaxIdentificationNumber()+
+				"Wich-mot Edward Wichrowski\n09-500 Goostynin\nul. Szopena 4\n");
 			Phrase customer = new Phrase(
 				"Diligentia Radosław Wichrowski\n04-113 Warszawa\nul. Łukowska 1 m 156\nNIP: 971-060-22-10");
 
@@ -148,4 +151,9 @@ public class Printer {
 
 		// TODO-rwichrowski Dodać bibliotekę log4J do logowania bugów
 	}
+
+	public void setModel(InvoiceModel model) {
+		this.model = model;
+	}
+
 }

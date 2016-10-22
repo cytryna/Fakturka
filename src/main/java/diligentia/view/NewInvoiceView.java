@@ -12,36 +12,28 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
-import static diligentia.controller.MainController.SELLER_COMPANY;
 import static diligentia.util.GridBagConstraintsBuilder.constraints;
 import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
-public class NewInvoiceView extends JPanel {
+	public class NewInvoiceView extends JPanel {
 
-	private ProductTableModel productTableModel;
-	private Printer printer = new Printer();
-	private InvoiceModel invoiceModel = new InvoiceModel();
+		private ProductTableModel productTableModel;
+		private Printer printer = new Printer();
+		private InvoiceModel invoiceModel = new InvoiceModel();
 
-	public NewInvoiceView() {
-		init();
-	}
+		public NewInvoiceView() {
+			init();
+		}
 
 	private void init() {
 
-		Company customerCompany = new Company();
-		customerCompany.setTaxIdentificationNumber("NIP 465-884-55-22");
-		customerCompany.setName("Firma krzak");
-		customerCompany.setPostCode("88-888");
-		customerCompany.setCity("Kopydłów");
-		customerCompany.setStreet("ul. Zagrobelna 4423");
-		invoiceModel.setCompany(customerCompany);
 		setLayout(new GridBagLayout());
 		add(new JTextField("Faktura Vat"), constraints().withPosition(0, 0).build());
 		add(new JTextField("15/2016"), constraints().withPosition(0, 1).build());
 		add(new JTextField("Warszawa 2015-12-29"), constraints().withPosition(0, 2).build());
-//		add(createCompanyPanel("Sprzedwaca", SELLER_COMPANY),
-//			fillDefaults().withPosition(0, 3).build());
-		add(createCompanyPanel("Nabywca", invoiceModel.getCompany()),
+		add(createCompanyPanel("Sprzedwaca", invoiceModel.getSalesman()),
+			fillDefaults().withPosition(0, 3).build());
+		add(createCompanyPanel("Nabywca", invoiceModel.getCustomer()),
 			fillDefaults().withPosition(1, 3).build());
 
 		JButton refresh = new JButton("Dodaj nowy artykuł");
@@ -69,6 +61,7 @@ public class NewInvoiceView extends JPanel {
 	}
 
 	private void drukuj() {
+		printer.setModel(invoiceModel);
 		printer.printAndOpen();
 
 
