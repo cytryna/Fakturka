@@ -1,10 +1,10 @@
 package diligentia.view;
 
-import diligentia.entity.Product;
+
 import diligentia.iText.Printer;
-import diligentia.entity.Company;
-import diligentia.entity.Invoice;
+import diligentia.model.Company;
 import diligentia.model.InvoiceModel;
+import diligentia.model.Item;
 
 import javax.swing.*;
 import java.awt.*;
@@ -20,7 +20,7 @@ public class NewInvoiceView extends JPanel {
 
 	private ProductTableModel productTableModel;
 	private Printer printer = new Printer();
-	private InvoiceModel invoiceModel;
+	private InvoiceModel invoiceModel = new InvoiceModel();
 
 	public NewInvoiceView() {
 		init();
@@ -34,14 +34,14 @@ public class NewInvoiceView extends JPanel {
 		customerCompany.setPostCode("88-888");
 		customerCompany.setCity("Kopydłów");
 		customerCompany.setStreet("ul. Zagrobelna 4423");
-
+		invoiceModel.setCompany(customerCompany);
 		setLayout(new GridBagLayout());
 		add(new JTextField("Faktura Vat"), constraints().withPosition(0, 0).build());
 		add(new JTextField("15/2016"), constraints().withPosition(0, 1).build());
 		add(new JTextField("Warszawa 2015-12-29"), constraints().withPosition(0, 2).build());
-		add(createCompanyPanel("Sprzedwaca", SELLER_COMPANY),
-			fillDefaults().withPosition(0, 3).build());
-		add(createCompanyPanel("Nabywca", customerCompany), invoiceModel.getCompany()
+//		add(createCompanyPanel("Sprzedwaca", SELLER_COMPANY),
+//			fillDefaults().withPosition(0, 3).build());
+		add(createCompanyPanel("Nabywca", invoiceModel.getCompany()),
 			fillDefaults().withPosition(1, 3).build());
 
 		JButton refresh = new JButton("Dodaj nowy artykuł");
@@ -101,7 +101,7 @@ public class NewInvoiceView extends JPanel {
 		return jPanel;
 	}
 
-	public void reload(List<Product> entries) {
+	public void reload(List<Item> entries) {
 		productTableModel.reload(entries);
 
 	}

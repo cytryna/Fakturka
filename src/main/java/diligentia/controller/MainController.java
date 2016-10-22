@@ -8,6 +8,7 @@ import javax.annotation.PostConstruct;
 import javax.swing.*;
 
 import diligentia.entity.Product;
+import diligentia.model.Item;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -22,7 +23,7 @@ public class MainController {
     @Autowired
     private PrepareDataUtil prepareDataUtil;
 
-    List<Product> entries = new ArrayList<>();
+    List<Item> entries = new ArrayList<>();
 
     public static Company SELLER_COMPANY = new Company("NIP 775-000-78-54", "wich-mot edward Wichrowski", "09-500eeee", "Gostynin", "ul. Chopina 4");
 
@@ -57,8 +58,8 @@ public class MainController {
 
     private void refreshTable() {
 //        this.frame.refreshTable(this.articleDAO.findAll());
-        entries.add(new Product(1, "Silnik", "opis", 3, 3.0, 2));
-        entries.add(new Product(2, "Alternator", "opis", 4, 4.0, 4));
+//        entries.add(new Product(1, "Silnik", "opis", 3, 3.0, 2));
+//        entries.add(new Product(2, "Alternator", "opis", 4, 4.0, 4));
         frame.refreshTable(entries);
 
     }

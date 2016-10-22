@@ -2,6 +2,7 @@ package diligentia.view;
 
 import diligentia.entity.Product;
 import diligentia.entity.Company;
+import diligentia.model.Item;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -99,7 +100,7 @@ public class MainFrame extends JFrame {
         contentPanel.add(component);
     }
 
-    public void refreshTable(List<Product> entries) {
+    public void refreshTable(List<Item> entries) {
         newInvoiceView.reload(entries);
     }
 
