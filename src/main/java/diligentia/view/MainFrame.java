@@ -60,8 +60,8 @@ public class MainFrame extends JFrame {
         newInvoiceView.setVisible(false);
         companyView = new CompanyView();
         companyView.setVisible(false);
-        contentPanel.add(companyView, COMPANY_CARD);
         contentPanel.add(newInvoiceView, INVOICE_CARD);
+        contentPanel.add(companyView, COMPANY_CARD);
 
 //        createButton("First");
 //        createButton("Second");
@@ -73,10 +73,10 @@ public class MainFrame extends JFrame {
 
         leftPanel.setPreferredSize(new Dimension(250, getHeight()));
         leftPanel.setBorder(BorderFactory.createTitledBorder("Left Panel"));
-        JButton firmyButton = new LeftJButton("Firmy", COMPANY_CARD);
-        leftPanel.add(firmyButton);
         JButton invoiceButton = new LeftJButton("Nowa faktura", INVOICE_CARD);
         leftPanel.add(invoiceButton);
+        JButton firmyButton = new LeftJButton("Firmy", COMPANY_CARD);
+        leftPanel.add(firmyButton);
         return leftPanel;
     }
 

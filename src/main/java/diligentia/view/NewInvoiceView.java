@@ -12,6 +12,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+import static diligentia.util.GridBagConstraintsBuilder.bothConstraint;
 import static diligentia.util.GridBagConstraintsBuilder.constraints;
 import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
@@ -26,6 +27,10 @@ import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 		}
 
 	private void init() {
+
+		1. Pracuj nad wyglądem formatki do wprowadzania danych
+		2. Zacznij drukować dane z formatki
+
 
 		setLayout(new GridBagLayout());
 		add(new JTextField("Faktura Vat"), constraints().withPosition(0, 0).build());
@@ -56,7 +61,11 @@ import static diligentia.util.GridBagConstraintsBuilder.fillDefaults;
 
 
 		add(createProductTable(),
-                fillDefaults().withPosition(0, 5).withGridWidth(2).build());
+				fillDefaults().withPosition(0, 5).withGridWidth(2).build());
+
+
+		add(Box.createVerticalGlue(),
+				bothConstraint().withPosition(0, 6).withGridWidth(2).build());
 
 	}
 

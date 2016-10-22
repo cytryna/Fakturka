@@ -3,11 +3,12 @@ package diligentia.view;
 import diligentia.model.Item;
 
 import javax.swing.table.AbstractTableModel;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ProductTableModel extends AbstractTableModel {
 
-    private List<Item> items;
+    private List<Item> items = new ArrayList<>();
 
     private String[] colNomes =  { "Symbol", "Customer Name",
             "Price", "Change" };
