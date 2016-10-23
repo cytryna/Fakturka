@@ -2,6 +2,11 @@ package diligentia.model;
 
 import diligentia.view.ViewInterface;
 
+import java.awt.*;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 public class InvoiceModel {
@@ -11,6 +16,8 @@ public class InvoiceModel {
     private Company customer = new Company();
     private final Company salesman;
     private List<Item> item;
+    private LocalDate date = LocalDate.now();
+    private String city = "Warszawa"; //TODO-rwichrowski Poprawić
 
     public InvoiceModel() {
         salesman = new Company("NIP 775-000-78-54", "Wich-Mot Edward Wichrowski", "09-500", "Gostynin", "ul. Chopina 4");
@@ -44,5 +51,20 @@ public class InvoiceModel {
         this.item = item;
     }
 
+    public LocalDate getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDate date) {
+        this.date = date;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
+    }
 }
 
