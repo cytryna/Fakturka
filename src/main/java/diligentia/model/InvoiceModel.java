@@ -20,7 +20,7 @@ public class InvoiceModel {
     private String city = "Warszawa"; //TODO-rwichrowski Poprawić
 
     public InvoiceModel() {
-        salesman = new Company("NIP 775-000-78-54", "Wich-Mot Edward Wichrowski", "09-500", "Gostynin", "ul. Chopina 4");
+        salesman = new Company("775-000-78-54", "Wich-Mot Edward Wichrowski", "09-500", "Gostynin", "Chopina 4");
     }
 
     public String getNumber() {
