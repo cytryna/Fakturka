@@ -6,14 +6,14 @@ import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductTableModel extends AbstractTableModel {
+    public class ProductTableModel extends AbstractTableModel {
 
     private List<Item> items = new ArrayList<>();
 
-    private String[] colNomes =  { "Symbol", "Customer Name",
-            "Price", "Change" };
+    private String[] colNomes =  { "Nazwa towaru", "Ilość",
+            "Cena jednostkowa netto", "Wartość netto", "Stawka Vat", "Kwota Vat", "Wartość brutto"};
 
-    private Class<?>[] colTipos = { String.class, String.class, String.class, Integer.class };
+    private Class<?>[] colTipos = { String.class, Integer.class, String.class, String.class,  String.class, String.class, String.class};
 
     public ProductTableModel(){}
 
@@ -35,7 +35,7 @@ public class ProductTableModel extends AbstractTableModel {
 
     @Override
     public int getColumnCount() {
-        return 4;
+        return 7;
     }
 
     @Override
@@ -60,9 +60,15 @@ public class ProductTableModel extends AbstractTableModel {
             case 1:
                 return m.getAmount();
             case 2:
-                return m.getPriceWithTax();
+                return m.getPrice();
             case 3:
-                return m.getAmount();
+                return m.getNetValue();
+            case 4:
+                return m.getTax() + "%";
+            case 5:
+                return m.getTaxValue();
+            case 6:
+                return m.getGrossValue();
             default:
                 return null;
         }

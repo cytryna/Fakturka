@@ -11,9 +11,9 @@ public class Item {
     private int amount;
 
     private int tax = 22;
+    private Double netValue;
+    private Double grossValue;
 
-//  wyliczalne
-//  private Double priceWithTax;
 
     public String getName() {
         return name;
@@ -55,7 +55,15 @@ public class Item {
         this.tax = tax;
     }
 
-    public Double getPriceWithTax() {
-        return price * tax;
+    public Double getNetValue() {
+        return price * amount;
+    }
+
+    public Double getTaxValue() {
+        return tax * getNetValue();
+    }
+
+    public Double getGrossValue() {
+        return getNetValue() + getTaxValue();
     }
 }

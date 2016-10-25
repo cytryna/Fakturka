@@ -7,36 +7,62 @@ import diligentia.model.InvoiceModel;
 import diligentia.model.Item;
 
 import javax.swing.*;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ComponentAdapter;
+import java.awt.event.ComponentEvent;
 import java.util.List;
 
 import static diligentia.util.GridBagConstraintsBuilder.*;
 
 public class NewInvoiceView extends JPanel {
 
-    private ProductTableModel productTableModel;
+	float[] columnWidthPercentage = {64.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f};
+	public static final int INSETS_BOTTOM = 3;
+	private ProductTableModel productTableModel;
     private Printer printer = new Printer();
     private InvoiceModel invoiceModel = new InvoiceModel();
+	private JTable table;
 
-    public NewInvoiceView() {
+	public NewInvoiceView() {
         init();
+
+		addComponentListener(new ComponentAdapter() {
+			@Override
+			public void componentResized(ComponentEvent e) {
+				resizeColumns();
+			}
+		});
     }
 
-    private void init() {
+	private void resizeColumns() {
+		int tW = table.getWidth();
+		TableColumn column;
+		TableColumnModel jTableColumnModel = table.getColumnModel();
+		int cantCols = jTableColumnModel.getColumnCount();
+		for (int i = 0; i < cantCols; i++) {
+			column = jTableColumnModel.getColumn(i);
+			int pWidth = Math.round(columnWidthPercentage[i] * tW);
+			column.setPreferredWidth(pWidth);
+		}
+	}
 
-	TODO-rwichrowski	1. Pracuj nad wyglądem formatki do wprowadzania danych
-	TODO-rwichrowski	2. Zacznij drukować dane z formatki
+	private void init() {
+
+//	TODO-rwichrowski	1. Pracuj nad wyglądem formatki do wprowadzania danych
+//	TODO-rwichrowski	2. Zacznij drukować dane z formatki
 
         setLayout(new GridBagLayout());
         int i = 0;
         add(createIssuedOn(), constraints().withPosition(0, i++).withAnchor(GridBagConstraints.WEST).withInsetsLeft(20).build());
         add(createTitleWithNumber(), constraints().withPosition(1, i++).build());
         add(createCompanyPanel("Sprzedawca", invoiceModel.getSalesman(), false),
-                fillDefaults().withPosition(0, i).build());
+                horizontalConstraint().withPosition(0, i).withInsets(10,30,10,30).build());
         add(createCompanyPanel("Nabywca", invoiceModel.getCustomer(), true),
-                fillDefaults().withPosition(1, i++).build());
+				horizontalConstraint().withPosition(1, i++).withInsets(10,30,10,30).build());
 
         JButton refresh = new JButton("Dodaj nowy artykuł");
         refresh.addActionListener(new AbstractAction() {
@@ -99,12 +125,12 @@ public class NewInvoiceView extends JPanel {
     }
 
     private Component createProductTable() {
-        JTable table = new JTable();
+        table = new JTable();
         productTableModel = new ProductTableModel();
         table.setModel(productTableModel);
         JScrollPane tableScrollPane = new JScrollPane(table);
         tableScrollPane.setPreferredSize(new Dimension(700, 182));
-
+		resizeColumns();
         return tableScrollPane;
     }
 
@@ -117,19 +143,30 @@ public class NewInvoiceView extends JPanel {
         jPanel.add(new JLabel("NIP:"),
                 constraints().withPosition(0, y).withAnchor(GridBagConstraints.WEST).build());
         JTextField taxField = new JTextField(company.getTaxIdentificationNumber());
+		taxField.setPreferredSize(new Dimension(100, 21));
         taxField.setEditable(editable);
-        jPanel.add(taxField,
-                constraints().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).build());
+		jPanel.add(taxField,
+                constraints().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).withInsetsBottom(INSETS_BOTTOM).build());
         jPanel.add(new JLabel("Nazwa:"),
                 constraints().withPosition(0, y).withAnchor(GridBagConstraints.WEST).build());
-        jPanel.add(new JTextField(company.getName()),
-                horizontalConstraint().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).build());
+		JTextField nameField = new JTextField(company.getName());
+		nameField.setEditable(editable);
+		Dimension preferredSize = new Dimension(350, 21);
+		nameField.setPreferredSize(preferredSize);
+		jPanel.add(nameField,
+				constraints().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).withInsetsBottom(INSETS_BOTTOM).build());
         jPanel.add(new JLabel("Adres"),
                 constraints().withPosition(0, y).withAnchor(GridBagConstraints.WEST).build());
-        jPanel.add(new JTextField(company.getPostCode() + " " + company.getCity()),
-                horizontalConstraint().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).build());
-        jPanel.add(new JTextField(company.getStreet()),
-                horizontalConstraint().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).build());
+		JTextField adressLine1Field = new JTextField(company.getPostCode() + " " + company.getCity());
+		adressLine1Field.setEditable(editable);
+		adressLine1Field.setPreferredSize(preferredSize);
+		jPanel.add(adressLine1Field,
+                constraints().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).withInsetsBottom(INSETS_BOTTOM).build());
+		JTextField adressLine2Field = new JTextField(company.getStreet());
+		adressLine2Field.setEditable(editable);
+		adressLine2Field.setPreferredSize(preferredSize);
+		jPanel.add(adressLine2Field,
+				constraints().withPosition(1, y++).withAnchor(GridBagConstraints.WEST).withInsetsBottom(INSETS_BOTTOM).build());
         return jPanel;
     }
 
