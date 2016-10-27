@@ -4,9 +4,7 @@ import diligentia.view.ViewInterface;
 
 import java.awt.*;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+
 import java.util.List;
 
 public class InvoiceModel {

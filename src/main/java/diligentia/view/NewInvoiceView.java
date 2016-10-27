@@ -6,13 +6,9 @@ import static diligentia.util.GridBagConstraintsBuilder.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.ComponentAdapter;
-import java.awt.event.ComponentEvent;
 import java.util.List;
 
 import javax.swing.*;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
 
 import diligentia.iText.Printer;
 import diligentia.model.Company;
@@ -21,35 +17,17 @@ import diligentia.model.Item;
 
 public class NewInvoiceView extends JPanel {
 
-	float[] columnWidthPercentage = {64.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f};
+
 	public static final int INSETS_BOTTOM = 3;
-	private ProductTableModel productTableModel;
+//	private ProductTableModel productTableModel;
     private Printer printer = new Printer();
     private InvoiceModel invoiceModel = new InvoiceModel();
-	private JTable table;
+    private TablePanel tablePanel;
 
 	public NewInvoiceView() {
         init();
-
-		addComponentListener(new ComponentAdapter() {
-			@Override
-			public void componentResized(ComponentEvent e) {
-				resizeColumns();
-			}
-		});
     }
 
-	private void resizeColumns() {
-		int tW = table.getWidth();
-		TableColumn column;
-		TableColumnModel jTableColumnModel = table.getColumnModel();
-		int cantCols = jTableColumnModel.getColumnCount();
-		for (int i = 0; i < cantCols; i++) {
-			column = jTableColumnModel.getColumn(i);
-			int pWidth = Math.round(columnWidthPercentage[i] * tW);
-			column.setPreferredWidth(pWidth);
-		}
-	}
 
 	private void init() {
 
@@ -58,21 +36,21 @@ public class NewInvoiceView extends JPanel {
 
         setLayout(new GridBagLayout());
         int i = 0;
-        add(createIssuedOn(), constraints().withPosition(0, i++).withAnchor(GridBagConstraints.WEST).withInsetsLeft(20).build());
-        add(createTitleWithNumber(), constraints().withPosition(1, i++).build());
+        add(createIssuedOn(), constraints().withPosition(0, i).withAnchor(GridBagConstraints.WEST).withInsetsLeft(20).build());
+        add(createTitleWithNumber(), constraints().withPosition(1, ++i).build());
         add(createCompanyPanel("Sprzedawca", invoiceModel.getSalesman(), false),
-                horizontalConstraint().withPosition(0, i).withInsets(10,30,10,30).build());
+                horizontalConstraint().withPosition(0, ++i).withInsets(10,30,10,30).build());
         add(createCompanyPanel("Nabywca", invoiceModel.getCustomer(), true),
-				horizontalConstraint().withPosition(1, i++).withInsets(10,30,10,30).build());
+				horizontalConstraint().withPosition(1, i).withInsets(10,30,10,30).build());
 
-        JButton refresh = new JButton("Dodaj nowy artykuł");
-        refresh.addActionListener(new AbstractAction() {
+        JButton addButton = new JButton("Dodaj nowy artykuł");
+        addButton.addActionListener(new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                productTableModel.addNewProduct();
+//                productTableModel.addNewProduct();
             }
         });
-        add(refresh, constraints().withPosition(0, i++).build());
+        add(addButton, constraints().withPosition(0, ++i).build());
 
         JButton printButton = new JButton("Drukuj");
         printButton.addActionListener(new ActionListener() {
@@ -85,11 +63,11 @@ public class NewInvoiceView extends JPanel {
 
 
         add(createProductTable(),
-                fillDefaults().withPosition(0, i++).withGridWidth(2).build());
+                fillDefaults().withPosition(0, ++i).withGridWidth(2).build());
 
 
         add(Box.createVerticalGlue(),
-                bothConstraint().withPosition(0, i++).withGridWidth(2).build());
+                bothConstraint().withPosition(0, ++i).withGridWidth(2).build());
 
     }
 
@@ -126,12 +104,10 @@ public class NewInvoiceView extends JPanel {
     }
 
     private Component createProductTable() {
-        table = new JTable();
-        productTableModel = new ProductTableModel();
-        table.setModel(productTableModel);
-        JScrollPane tableScrollPane = new JScrollPane(table);
+        tablePanel = new TablePanel();
+
+        JScrollPane tableScrollPane = new JScrollPane(tablePanel);
         tableScrollPane.setPreferredSize(new Dimension(700, 182));
-		resizeColumns();
         return tableScrollPane;
     }
 
@@ -172,7 +148,7 @@ public class NewInvoiceView extends JPanel {
     }
 
     public void reload(List<Item> entries) {
-        productTableModel.reload(entries);
+//        productTableModel.reload(entries);
 
     }
 
