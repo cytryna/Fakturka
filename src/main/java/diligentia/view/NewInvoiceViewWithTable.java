@@ -1,8 +1,14 @@
 package diligentia.view;
 
 
-import static diligentia.util.GridBagConstraintsBuilder.*;
+import diligentia.iText.Printer;
+import diligentia.model.Company;
+import diligentia.model.InvoiceModel;
+import diligentia.model.Item;
 
+import javax.swing.*;
+import javax.swing.table.TableColumn;
+import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -10,16 +16,9 @@ import java.awt.event.ComponentAdapter;
 import java.awt.event.ComponentEvent;
 import java.util.List;
 
-import javax.swing.*;
-import javax.swing.table.TableColumn;
-import javax.swing.table.TableColumnModel;
+import static diligentia.util.GridBagConstraintsBuilder.*;
 
-import diligentia.iText.Printer;
-import diligentia.model.Company;
-import diligentia.model.InvoiceModel;
-import diligentia.model.Item;
-
-public class NewInvoiceView extends JPanel {
+public class NewInvoiceViewWithTable extends JPanel {
 
 	float[] columnWidthPercentage = {64.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f};
 	public static final int INSETS_BOTTOM = 3;
@@ -28,7 +27,7 @@ public class NewInvoiceView extends JPanel {
     private InvoiceModel invoiceModel = new InvoiceModel();
 	private JTable table;
 
-	public NewInvoiceView() {
+	public NewInvoiceViewWithTable() {
         init();
 
 		addComponentListener(new ComponentAdapter() {
