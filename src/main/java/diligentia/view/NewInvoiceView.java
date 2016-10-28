@@ -104,7 +104,7 @@ public class NewInvoiceView extends JPanel {
     }
 
     private Component createProductTable() {
-        tablePanel = new TablePanel();
+        tablePanel = new TablePanel(invoiceModel);
 
         JScrollPane tableScrollPane = new JScrollPane(tablePanel);
         tableScrollPane.setPreferredSize(new Dimension(700, 182));

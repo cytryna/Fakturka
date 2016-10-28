@@ -1,19 +1,19 @@
 package diligentia.model;
 
-import diligentia.view.ViewInterface;
-
-import java.awt.*;
+import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
-
+import java.util.ArrayList;
 import java.util.List;
+
+import diligentia.view.ViewInterface;
 
 public class InvoiceModel {
 
-    private List<ViewInterface> observers;
+    private List<ViewInterface> observers;ddddd
     private String number;
     private Company customer = new Company();
     private final Company salesman;
-    private List<Item> item;
+    private List<Item> item = new ArrayList<>();
     private LocalDate date = LocalDate.now();
     private String city = "Warszawa"; //TODO-rwichrowski Poprawić
 
