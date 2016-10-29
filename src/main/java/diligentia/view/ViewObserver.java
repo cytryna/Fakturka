@@ -1,6 +1,6 @@
 package diligentia.view;
 
-public interface ViewInterface {
+public interface ViewObserver {
 
     public void refreshView();
 }

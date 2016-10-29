@@ -1,15 +1,15 @@
 package diligentia.model;
 
-import java.beans.PropertyChangeSupport;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
-import diligentia.view.ViewInterface;
+import diligentia.view.ViewObserver;
 
 public class InvoiceModel {
 
-    private List<ViewInterface> observers;ddddd
+    private List<ViewObserver> observers;
     private String number;
     private Company customer = new Company();
     private final Company salesman;
@@ -19,6 +19,19 @@ public class InvoiceModel {
 
     public InvoiceModel() {
         salesman = new Company("775-000-78-54", "Wich-Mot Edward Wichrowski", "09-500", "Gostynin", "Chopina 4");
+    }
+
+    public void addObservers(ViewObserver viewObserver) {
+        observers.add(viewObserver);
+    }
+
+    public void refreshView() {
+        observers.stream().forEach(new Consumer<ViewObserver>() {
+            @Override
+            public void accept(ViewObserver viewObserver) {
+                viewObserver.refreshView();
+            }
+        });
     }
 
     public String getNumber() {

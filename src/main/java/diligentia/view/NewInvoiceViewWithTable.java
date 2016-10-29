@@ -17,7 +17,7 @@ import java.awt.event.ComponentEvent;
 import java.util.List;
 
 import static diligentia.util.GridBagConstraintsBuilder.*;
-
+@Deprecated
 public class NewInvoiceViewWithTable extends JPanel {
 
 	float[] columnWidthPercentage = {64.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f, 6.0f};

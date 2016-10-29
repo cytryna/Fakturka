@@ -15,7 +15,7 @@ import diligentia.model.Company;
 import diligentia.model.InvoiceModel;
 import diligentia.model.Item;
 
-public class NewInvoiceView extends JPanel {
+public class NewInvoiceView extends JPanel implements ViewObserver {
 
 
 	public static final int INSETS_BOTTOM = 3;
@@ -149,6 +149,11 @@ public class NewInvoiceView extends JPanel {
 
     public void reload(List<Item> entries) {
 //        productTableModel.reload(entries);
+
+    }
+
+    @Override
+    public void refreshView() {
 
     }
 
