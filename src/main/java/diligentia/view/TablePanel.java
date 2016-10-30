@@ -35,18 +35,27 @@ public class TablePanel extends JPanel {
 		add(new JLabel(colNomes[2]), bothConstraint().withPosition(2, i).build());
 		add(new JLabel(colNomes[3]), bothConstraint().withPosition(3, i).build());
 		add(new JLabel(colNomes[4]), bothConstraint().withPosition(4, i).build());
+		add(new JLabel(colNomes[5]), bothConstraint().withPosition(5, i).build());
+		add(new JLabel(colNomes[6]), bothConstraint().withPosition(6, i).build());
+
 		for (Item item : invoiceModel.getItem()) {
-			add(new JTextField(invoiceModel.getItem().get(i).getName()), bothConstraint()
-				.withPosition(0, i + 1).withWeightX(columnWidthPercentage[0]).build());
-			add(new JTextField("" + invoiceModel.getItem().get(i).getPrice()), bothConstraint()
-				.withPosition(1, i + 1).withWeightX(columnWidthPercentage[1]).build());
-			add(new JTextField(invoiceModel.getItem().get(i).getAmount()), bothConstraint()
-				.withPosition(2, i + 1).withWeightX(columnWidthPercentage[2]).build());
-			add(new JTextField(invoiceModel.getItem().get(i).getTax()), bothConstraint()
-				.withPosition(3, i + 1).withWeightX(columnWidthPercentage[3]).build());
-			add(new JTextField("" + invoiceModel.getItem().get(i).getGrossValue()), bothConstraint()
-				.withPosition(4, i + 1).withWeightX(columnWidthPercentage[4]).build());
+			InvoiceTableRow tableRow = new InvoiceTableRow(invoiceModel.getItem().get(i));
+			add(tableRow.getNameField(), bothConstraint()
+					.withPosition(0, i + 1).withWeightX(columnWidthPercentage[0]).build());
+			add(tableRow.getPriceField(), bothConstraint()
+					.withPosition(1, i + 1).withWeightX(columnWidthPercentage[1]).build());
+			add(tableRow.getAmountField(), bothConstraint()
+					.withPosition(2, i + 1).withWeightX(columnWidthPercentage[2]).build());
+			add(tableRow.getNetValueField(), bothConstraint()
+					.withPosition(3, i + 1).withWeightX(columnWidthPercentage[3]).build());
+			add(tableRow.getTaxField(), bothConstraint()
+					.withPosition(4, i + 1).withWeightX(columnWidthPercentage[4]).build());
+			add(tableRow.getTaxValueField(), bothConstraint()
+					.withPosition(5, i + 1).withWeightX(columnWidthPercentage[5]).build());
+			add(tableRow.getGrossValueField(), bothConstraint()
+					.withPosition(6, i + 1).withWeightX(columnWidthPercentage[6]).build());
 			i++;
 		}
 	}
+
 }

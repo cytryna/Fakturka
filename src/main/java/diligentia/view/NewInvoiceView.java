@@ -23,8 +23,9 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     private Printer printer = new Printer();
     private InvoiceModel invoiceModel = new InvoiceModel();
     private TablePanel tablePanel;
+    private JTextField cityTextField;
 
-	public NewInvoiceView() {
+    public NewInvoiceView() {
         init();
     }
 
@@ -84,7 +85,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     private JComponent createIssuedOn() {
         JPanel jPanel = new JPanel();
         jPanel.add(new JLabel("Miejscowość:"));
-        JTextField cityTextField = new JTextField(invoiceModel.getCity());
+        cityTextField = new JTextField();
         Dimension dimension = new Dimension(150, 21);
         cityTextField.setPreferredSize(dimension);
         jPanel.add(cityTextField);
@@ -154,7 +155,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
 
     @Override
     public void refreshView() {
-
+        cityTextField.setText(invoiceModel.getCity());
     }
 
     //TODO-rwichrowski  liczby na słowa
