@@ -6,24 +6,33 @@ import static diligentia.util.GridBagConstraintsBuilder.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.beans.PropertyChangeEvent;
+import java.beans.PropertyChangeListener;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.List;
 
 import javax.swing.*;
+import javax.swing.text.MaskFormatter;
 
 import diligentia.iText.Printer;
 import diligentia.model.Company;
 import diligentia.model.InvoiceModel;
 import diligentia.model.Item;
+import org.apache.log4j.Logger;
 
-public class NewInvoiceView extends JPanel implements ViewObserver {
+public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChangeListener {
 
-
+    Logger LOGGER = Logger.getLogger(NewInvoiceView.class);
 	public static final int INSETS_BOTTOM = 3;
 //	private ProductTableModel productTableModel;
     private Printer printer = new Printer();
     private InvoiceModel invoiceModel = new InvoiceModel();
     private TablePanel tablePanel;
     private JTextField cityTextField;
+    private JFormattedTextField dateTextField;
 
     public NewInvoiceView() {
         init();
@@ -88,9 +97,21 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
         cityTextField = new JTextField();
         Dimension dimension = new Dimension(150, 21);
         cityTextField.setPreferredSize(dimension);
+        cityTextField.addPropertyChangeListener("value", this);
         jPanel.add(cityTextField);
         jPanel.add(new JLabel(", dnia:"));
-        JTextField dateTextField = new JTextField(""+invoiceModel.getDate());
+
+        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+        dateTextField = new JFormattedTextField(format);
+        try {
+            MaskFormatter dateMask = new MaskFormatter("####-##-##");
+            dateMask.install(dateTextField);
+        } catch (ParseException ex) {
+            LOGGER.error("Couldn't parse a date", ex);
+        }
+        dateTextField.setText(""+invoiceModel.getDate());
+        dateTextField.addPropertyChangeListener("value", this);
+
         dimension = new Dimension(80, 21);
         dateTextField.setPreferredSize(dimension);
         jPanel.add(dateTextField);
@@ -98,6 +119,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     }
 
     private void drukuj() {
+        System.err.println("radek"+invoiceModel.getCity());
         printer.setModel(invoiceModel);
         printer.printAndOpen();
 
@@ -156,6 +178,16 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     @Override
     public void refreshView() {
         cityTextField.setText(invoiceModel.getCity());
+    }
+
+    @Override
+    public void propertyChange(PropertyChangeEvent evt) {
+        Object source = evt.getSource();
+        if (source == cityTextField) {
+            invoiceModel.setCity(cityTextField.getText());
+        } else if (source == dateTextField) {
+//            invoiceModel.setDate((LocalDate) dateTextField.getValue());
+        }
     }
 
     //TODO-rwichrowski  liczby na słowa
