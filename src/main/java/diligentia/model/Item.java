@@ -5,7 +5,7 @@ public class Item {
     private String name;
     private Double price = Double.valueOf(0);
     private int amount;
-    private int tax = 22;
+    private static final int tax = 22;////TODO-rwichrowski Przenieść to gdzieś w bardziej odpowiednie miejsce
 //   Double  getTaxValue
 //    private Double netValue;
 //    private Double grossValue;
@@ -48,10 +48,6 @@ public class Item {
         return tax;
     }
 
-    public void setTax(int tax) {
-        this.tax = tax;
-    }
-
     public Double getNetValue() {
         return price * amount;
     }
@@ -62,5 +58,9 @@ public class Item {
 
     public Double getGrossValue() {
         return getNetValue() + getTaxValue();
+    }
+
+    public static String getTaxString() {
+        return tax + " %";
     }
 }

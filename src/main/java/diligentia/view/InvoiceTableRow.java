@@ -6,12 +6,13 @@ import javax.swing.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.text.NumberFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
 public class InvoiceTableRow implements PropertyChangeListener {
 
-//    private List<ViewObserver> observers;
+    private List<ViewObserver> observers = new ArrayList<>();//TODO czy to mogłoby być statyczne ?
 
     private NumberFormat doubleFormat;
     private NumberFormat intFormat;
@@ -26,9 +27,14 @@ public class InvoiceTableRow implements PropertyChangeListener {
 
     private final Item item;
 
-    public InvoiceTableRow(Item item) {
+    public InvoiceTableRow(Item item, ViewObserver viewObserver) {
         this.item = item;
+        addObserver(viewObserver);
         initialize();
+    }
+
+    public void addObserver(ViewObserver viewObserver) {
+        observers.add(viewObserver);
     }
 
     private void initialize() {
@@ -50,7 +56,7 @@ public class InvoiceTableRow implements PropertyChangeListener {
         netValueField.addPropertyChangeListener("value", this);
         netValueField.setEditable(false);
 
-        taxField = new JTextField(item.getTax() + " %");
+        taxField = new JTextField(item.getTaxString());
         taxField.setEditable(false);
 
         taxValueField = new JFormattedTextField(doubleFormat);
@@ -71,13 +77,16 @@ public class InvoiceTableRow implements PropertyChangeListener {
         taxValueField.setValue(item.getTaxValue());
         grossValueField.setValue(item.getGrossValue());
 
-//TODO potrzebne będzie do aktualizacji ceny końcowej
-//        observers.stream().forEach(new Consumer<ViewObserver>() {
-//            @Override
-//            public void accept(ViewObserver viewObserver) {
-//                viewObserver.refreshView();
-//            }
-//        });
+        refreshGlobalData();
+    }
+
+    private void refreshGlobalData() {
+        observers.stream().forEach(new Consumer<ViewObserver>() {
+            @Override
+            public void accept(ViewObserver viewObserver) {
+                viewObserver.refreshView();
+            }
+        });
     }
 
     public JTextField getNameField() {

@@ -13,7 +13,7 @@ public class InvoiceModel {
     private String number;
     private Company customer = new Company();
     private final Company salesman;
-    private List<Item> item = new ArrayList<>();
+    private List<Item> items = new ArrayList<>();
     private LocalDate date = LocalDate.now();
     private String city = "Warszawa"; //TODO-rwichrowski Poprawić
 
@@ -54,12 +54,12 @@ public class InvoiceModel {
         return salesman;
     }
 
-    public List<Item> getItem() {
-        return item;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setItem(List<Item> item) {
-        this.item = item;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public LocalDate getDate() {
@@ -76,6 +76,30 @@ public class InvoiceModel {
 
     public void setCity(String city) {
         this.city = city;
+    }
+
+    public Double getGlobalNetValue() {
+        Double value = Double.valueOf(0);
+        for (Item item : items) {
+            value += item.getNetValue();
+        }
+        return value;
+    }
+
+    public Double getGlobalTaxValue() {
+        Double value = Double.valueOf(0);
+        for (Item item : items) {
+            value += item.getTaxValue();
+        }
+        return value;
+    }
+
+    public Double getGlobalGrossValue() {
+        Double value = Double.valueOf(0);
+        for (Item item : items) {
+            value += item.getGrossValue();
+        }
+        return value;
     }
 }
 
