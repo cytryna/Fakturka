@@ -5,11 +5,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+import diligentia.util.DigitsToLiteral;
 import diligentia.view.ViewObserver;
 
 public class InvoiceModel {
 
-    private List<ViewObserver> observers;
+    private List<ViewObserver> observers = new ArrayList<>();
     private String number;
     private Company customer = new Company();
     private final Company salesman;
@@ -25,6 +26,10 @@ public class InvoiceModel {
         observers.add(viewObserver);
     }
 
+    public void firePropertyChange() {
+        refreshView();
+    }
+
     public void refreshView() {
         observers.stream().forEach(new Consumer<ViewObserver>() {
             @Override
@@ -33,7 +38,6 @@ public class InvoiceModel {
             }
         });
     }
-
     public String getNumber() {
         return number;
     }
@@ -100,6 +104,10 @@ public class InvoiceModel {
             value += item.getGrossValue();
         }
         return value;
+    }
+
+    public String getGlobalGrossValueText() {
+        return DigitsToLiteral.tranlate(getGlobalGrossValue());
     }
 }
 

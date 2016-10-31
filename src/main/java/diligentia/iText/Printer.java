@@ -64,14 +64,14 @@ public class Printer {
 
 			emptyCell.setBorder(Rectangle.NO_BORDER);
 			table.addCell("Faktura VAT");
-			table.addCell(emptyCell);
+			table.addCell("d");
 			table.addCell("15/12/0049");
 			// emptyCell.setLeading(20f, 0f);
 			table.addCell(emptyCell);
 			table.addCell("Oryginał");// TODO-rwichrowski Polskie znaki
 			// emptyCell.setLeading(3f, 1.2f);
 			table.addCell(emptyCell);
-			table.addCell("Warszawa 2015-12-29");
+			table.addCell("Warszawa 2015-12-29" + model.getCity());
 			// emptyCell.setLeading(0f, 1.2f);
 			table.addCell(emptyCell);
 			table.addCell(salesman);

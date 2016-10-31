@@ -93,6 +93,6 @@ public class TablePanel extends JPanel implements ViewObserver{
 		globalTaxField.setText(Item.getTaxString());
 		globalTaxValueField.setValue(invoiceModel.getGlobalTaxValue());
 		globalGrossValueField.setValue(invoiceModel.getGlobalGrossValue());
-
+		invoiceModel.firePropertyChange();
 	}
 }

@@ -11,9 +11,9 @@ import java.beans.PropertyChangeListener;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.time.LocalDate;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
@@ -21,6 +21,7 @@ import diligentia.iText.Printer;
 import diligentia.model.Company;
 import diligentia.model.InvoiceModel;
 import diligentia.model.Item;
+import diligentia.util.DigitsToLiteral;
 import org.apache.log4j.Logger;
 
 public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChangeListener {
@@ -33,14 +34,15 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
     private TablePanel tablePanel;
     private JTextField cityTextField;
     private JFormattedTextField dateTextField;
+    private JLabel grossValueLiteralLabel = new JLabel("słownie");
 
     public NewInvoiceView() {
+
         init();
     }
 
-
 	private void init() {
-
+        invoiceModel.addObservers(this);
 //	TODO-rwichrowski	1. Pracuj nad wyglądem formatki do wprowadzania danych
 //	TODO-rwichrowski	2. Zacznij drukować dane z formatki
 
@@ -76,6 +78,9 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
                 fillDefaults().withPosition(0, ++i).withGridWidth(2).build());
 
 
+        add(grossValueLiteralLabel, constraints().withPosition(0, ++i).withGridWidth(2).withAnchor(GridBagConstraints.WEST).build());
+
+
         add(Box.createVerticalGlue(),
                 bothConstraint().withPosition(0, ++i).withGridWidth(2).build());
 
@@ -97,7 +102,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
         cityTextField = new JTextField();
         Dimension dimension = new Dimension(150, 21);
         cityTextField.setPreferredSize(dimension);
-        cityTextField.addPropertyChangeListener("value", this);
+        cityTextField.addPropertyChangeListener("value", this);nie działa
         jPanel.add(cityTextField);
         jPanel.add(new JLabel(", dnia:"));
 
@@ -119,6 +124,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
     }
 
     private void drukuj() {
+        refreshView();
         System.err.println("radek"+invoiceModel.getCity());
         printer.setModel(invoiceModel);
         printer.printAndOpen();
@@ -172,12 +178,12 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
 
     public void reload(List<Item> entries) {
 //        productTableModel.reload(entries);
-
     }
 
     @Override
     public void refreshView() {
         cityTextField.setText(invoiceModel.getCity());
+        grossValueLiteralLabel.setText(invoiceModel.getGlobalGrossValueText());
     }
 
     @Override
@@ -189,9 +195,6 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
 //            invoiceModel.setDate((LocalDate) dateTextField.getValue());
         }
     }
-
-    //TODO-rwichrowski  liczby na słowa
-    // http://www.algorytm.org/inne/zamiana-liczby-na-slowa-z-polska-gramatyka/zlns-gramatyka-j.html
 
     // https://examples.javacodegeeks.com/core-java/java-swing-mvc-example/
     // lub inne
