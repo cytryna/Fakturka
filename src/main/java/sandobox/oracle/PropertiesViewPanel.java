@@ -1,4 +1,4 @@
-package diligentia.oracle;
+package sandobox.oracle;
 
 /**
  * Created by rwichrowski on 14.10.16.

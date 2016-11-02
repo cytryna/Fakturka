@@ -1,4 +1,4 @@
-package diligentia.oracle;
+package sandobox.oracle;
 
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
