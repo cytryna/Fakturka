@@ -102,7 +102,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
         cityTextField = new JTextField();
         Dimension dimension = new Dimension(150, 21);
         cityTextField.setPreferredSize(dimension);
-        cityTextField.addPropertyChangeListener("value", this);nie działa
+        cityTextField.addPropertyChangeListener("value", this);
         jPanel.add(cityTextField);
         jPanel.add(new JLabel(", dnia:"));
 
@@ -124,12 +124,15 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
     }
 
     private void drukuj() {
-        refreshView();
+//        refreshView();
+        refreshModel();
         System.err.println("radek"+invoiceModel.getCity());
         printer.setModel(invoiceModel);
         printer.printAndOpen();
+    }
 
-
+    private void refreshModel() {
+        invoiceModel.setCity(cityTextField.getText());w ten sposób zczytaj wszystko z formatki
     }
 
     private Component createProductTable() {
