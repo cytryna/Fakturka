@@ -6,25 +6,23 @@ import static diligentia.util.GridBagConstraintsBuilder.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.PropertyChangeEvent;
-import java.beans.PropertyChangeListener;
-import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-import javax.annotation.PostConstruct;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
+
+import org.apache.log4j.Logger;
 
 import diligentia.iText.Printer;
 import diligentia.model.Company;
 import diligentia.model.InvoiceModel;
 import diligentia.model.Item;
-import diligentia.util.DigitsToLiteral;
-import org.apache.log4j.Logger;
+import diligentia.util.DateUtils;
 
-public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChangeListener {
+public class NewInvoiceView extends JPanel implements ViewObserver {
 
     Logger LOGGER = Logger.getLogger(NewInvoiceView.class);
 	public static final int INSETS_BOTTOM = 3;
@@ -35,6 +33,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
     private JTextField cityTextField;
     private JFormattedTextField dateTextField;
     private JLabel grossValueLiteralLabel = new JLabel("słownie");
+    private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
 
     public NewInvoiceView() {
 
@@ -102,11 +101,10 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
         cityTextField = new JTextField();
         Dimension dimension = new Dimension(150, 21);
         cityTextField.setPreferredSize(dimension);
-        cityTextField.addPropertyChangeListener("value", this);
+        cityTextField.setText(invoiceModel.getCity());
         jPanel.add(cityTextField);
         jPanel.add(new JLabel(", dnia:"));
 
-        DateFormat format = new SimpleDateFormat("yyyy-MM-dd");
         dateTextField = new JFormattedTextField(format);
         try {
             MaskFormatter dateMask = new MaskFormatter("####-##-##");
@@ -114,8 +112,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
         } catch (ParseException ex) {
             LOGGER.error("Couldn't parse a date", ex);
         }
-        dateTextField.setText(""+invoiceModel.getDate());
-        dateTextField.addPropertyChangeListener("value", this);
+        dateTextField.setValue(DateUtils.asDate(invoiceModel.getDate()));
 
         dimension = new Dimension(80, 21);
         dateTextField.setPreferredSize(dimension);
@@ -131,9 +128,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
         printer.printAndOpen();
     }
 
-    private void refreshModel() {
-        invoiceModel.setCity(cityTextField.getText());w ten sposób zczytaj wszystko z formatki
-    }
+
 
     private Component createProductTable() {
         tablePanel = new TablePanel(invoiceModel);
@@ -185,19 +180,14 @@ public class NewInvoiceView extends JPanel implements ViewObserver, PropertyChan
 
     @Override
     public void refreshView() {
-        cityTextField.setText(invoiceModel.getCity());
         grossValueLiteralLabel.setText(invoiceModel.getGlobalGrossValueText());
     }
 
-    @Override
-    public void propertyChange(PropertyChangeEvent evt) {
-        Object source = evt.getSource();
-        if (source == cityTextField) {
-            invoiceModel.setCity(cityTextField.getText());
-        } else if (source == dateTextField) {
-//            invoiceModel.setDate((LocalDate) dateTextField.getValue());
-        }
+    private void refreshModel() {
+        invoiceModel.setCity(cityTextField.getText());
+        invoiceModel.setDate(DateUtils.asLocalDate((Date) dateTextField.getValue()));
     }
+
 
     // https://examples.javacodegeeks.com/core-java/java-swing-mvc-example/
     // lub inne

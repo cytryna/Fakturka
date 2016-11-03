@@ -16,7 +16,7 @@ public class InvoiceModel {
     private final Company salesman;
     private List<Item> items = new ArrayList<>();
     private LocalDate date = LocalDate.now();
-    private String city = "Warszawa"; //TODO-rwichrowski Poprawić
+    private String city = "Gostynin"; //TODO-rwichrowski Poprawić
 
     public InvoiceModel() {
         salesman = new Company("775-000-78-54", "Wich-Mot Edward Wichrowski", "09-500", "Gostynin", "Chopina 4");
