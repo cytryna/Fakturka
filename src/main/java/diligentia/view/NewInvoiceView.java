@@ -54,14 +54,11 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
         add(createCompanyPanel("Nabywca", invoiceModel.getCustomer(), true),
 				horizontalConstraint().withPosition(1, i).withInsets(10,30,10,30).build());
 
-        JButton addButton = new JButton("Dodaj nowy artykuł");
-        addButton.addActionListener(new AbstractAction() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-//                productTableModel.addNewProduct();
-            }
-        });
-        add(addButton, constraints().withPosition(0, ++i).build());
+        add(createProductTable(),
+                fillDefaults().withPosition(0, ++i).withGridWidth(2).build());
+
+
+        add(grossValueLiteralLabel, constraints().withPosition(0, ++i).withGridWidth(2).withAnchor(GridBagConstraints.WEST).build());
 
         JButton printButton = new JButton("Drukuj");
         printButton.addActionListener(new ActionListener() {
@@ -70,15 +67,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
                 drukuj();
             }
         });
-        add(printButton, constraints().withPosition(1, i).build());
-
-
-        add(createProductTable(),
-                fillDefaults().withPosition(0, ++i).withGridWidth(2).build());
-
-
-        add(grossValueLiteralLabel, constraints().withPosition(0, ++i).withGridWidth(2).withAnchor(GridBagConstraints.WEST).build());
-
+        add(printButton, constraints().withPosition(1, ++i).build());
 
         add(Box.createVerticalGlue(),
                 bothConstraint().withPosition(0, ++i).withGridWidth(2).build());
@@ -123,7 +112,6 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     private void drukuj() {
 //        refreshView();
         refreshModel();
-        System.err.println("radek"+invoiceModel.getCity());
         printer.setModel(invoiceModel);
         printer.printAndOpen();
     }
