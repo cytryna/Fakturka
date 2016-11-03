@@ -89,6 +89,20 @@
             <version>1.0</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/jgoodies/forms -->
+        <dependency>
+            <groupId>jgoodies</groupId>
+            <artifactId>forms</artifactId>
+            <version>1.0.5</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/jgoodies/binding -->
+        <dependency>
+            <groupId>jgoodies</groupId>
+            <artifactId>binding</artifactId>
+            <version>1.0</version>
+        </dependency>
+
+
         <!-- Driver JDBC -->
         <dependency>
             <groupId>mysql</groupId>
