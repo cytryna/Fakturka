@@ -1,5 +1,6 @@
 package diligentia.model;
 
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
@@ -8,9 +9,9 @@ import java.util.function.Consumer;
 import diligentia.util.DigitsToLiteral;
 import diligentia.view.ViewObserver;
 
-public class InvoiceModel {
+public class InvoiceModel implements Serializable {
 
-    private List<ViewObserver> observers = new ArrayList<>();
+    private transient List<ViewObserver> observers = new ArrayList<>();
     private String number;
     private Company customer = new Company();
     private final Company salesman;

@@ -14,6 +14,7 @@ import java.util.List;
 import javax.swing.*;
 import javax.swing.text.MaskFormatter;
 
+import diligentia.util.SerializableUtils;
 import org.apache.log4j.Logger;
 
 import diligentia.iText.Printer;
@@ -24,7 +25,7 @@ import diligentia.util.DateUtils;
 
 public class NewInvoiceView extends JPanel implements ViewObserver {
 
-    Logger LOGGER = Logger.getLogger(NewInvoiceView.class);
+    private static Logger LOGGER = Logger.getLogger(NewInvoiceView.class);
 	public static final int INSETS_BOTTOM = 3;
 //	private ProductTableModel productTableModel;
     private Printer printer = new Printer();
@@ -64,7 +65,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
         printButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                drukuj();
+                print();
             }
         });
         add(printButton, constraints().withPosition(1, ++i).build());
@@ -109,9 +110,11 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
         return jPanel;
     }
 
-    private void drukuj() {
+    private void print() {
 //        refreshView();
+
         refreshModel();
+        SerializableUtils.writeOnDisc(invoiceModel);
         printer.setModel(invoiceModel);
         printer.printAndOpen();
     }

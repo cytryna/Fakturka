@@ -1,6 +1,8 @@
 package diligentia.model;
 
-public class Company {
+import java.io.Serializable;
+
+public class Company implements Serializable {
 
    private String taxIdentificationNumber;
 
