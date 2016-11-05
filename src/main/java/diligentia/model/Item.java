@@ -8,6 +8,7 @@ public class Item implements Serializable {
     private Double price = Double.valueOf(0);
     private int amount;
     private static final int tax = 22;////TODO-rwichrowski Przenieść to gdzieś w bardziej odpowiednie miejsce
+    private int lp;
 //   Double  getTaxValue
 //    private Double netValue;
 //    private Double grossValue;
@@ -64,5 +65,13 @@ public class Item implements Serializable {
 
     public static String getTaxString() {
         return tax + " %";
+    }
+
+    public int getLp() {
+        return lp;
+    }
+
+    public void setLp(int lp) {
+        this.lp = lp;
     }
 }

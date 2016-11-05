@@ -7,23 +7,27 @@ import com.itextpdf.text.pdf.BaseFont;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import diligentia.model.Company;
 import diligentia.model.InvoiceModel;
+import diligentia.model.Item;
 
 import java.awt.*;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.text.DecimalFormat;
 
 public class Printer {
 
 	/** Path to the resulting PDF file. */
 	//TODO-rwichrowski Wynieść do jakiś propertisów path foldera na faktury
-	public static final String RESULT = System.getProperty("user.home") + File.separator
+	private static final String RESULT = System.getProperty("user.home") + File.separator
 		+ "fakturka/hello.pdf";
 	private InvoiceModel model;
-
+	private Font times14;
+	private Font times9;
+	private BaseFont times;
+	private DecimalFormat precision = new DecimalFormat("#0.00");
 
 	public void openFile(String path) {
 		if (Desktop.isDesktopSupported()) {
@@ -38,8 +42,21 @@ public class Printer {
 
 
 	public void printAndOpen() {
+		initFonts();
 		print();
 		openFile(RESULT);
+	}
+
+	private void initFonts() {
+		try {
+			times = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		times14 = new Font(times, 14);
+		times9 = new Font(times, 9);
 	}
 
 	private void print() {
@@ -113,31 +130,16 @@ public class Printer {
 			// table.addCell(salesman);
 			document.add(table);
 
-			BaseFont times = null;
 
-			times = BaseFont.createFont(BaseFont.HELVETICA, BaseFont.CP1250, true);
-
-			Font t9 = new Font(times, 14);
 			String line = "POZYCJE FAKTURY:";
-			document.add(new Paragraph(line, t9));
+			document.add(new Paragraph(line, times14));
+			document.add(createProductTable());
 
-			PdfPTable productTabe = new PdfPTable(2);
-			PdfPCell cellLp = new PdfPCell(new Phrase("Lp"));
-			cellLp.setBackgroundColor(BaseColor.LIGHT_GRAY);
-			productTabe.addCell(cellLp);
-			cellLp.setPhrase(new Phrase("Nazwa artykółu", t9));
-			productTabe.addCell(cellLp);
-
-			document.add(productTabe);
-
-			document.add(new Paragraph("artykółu Odkud jste?"));
-			document.add(new Paragraph("Uvidíme se za chvilku. Měj se."));
-			document.add(new Paragraph("Dovolte, abych se představil."));
-			document.add(new Paragraph("To je studentka."));
-			document.add(new Paragraph("Všechno v pořádku?"));
-			document.add(new Paragraph("On je inženýr. Ona je lékař."));
-			document.add(new Paragraph("Toto je okno."));
-			document.add(new Paragraph("Zopakujte to prosím."));
+			long iPart;
+			Double fractional;
+			iPart = model.getGlobalGrossValue().longValue();
+			fractional = model.getGlobalGrossValue() - iPart;
+			document.add(new Paragraph("Słownie: " + model.getGlobalGrossValueText() + " " + precision.format(fractional), times14));
 
 			// step 5
 			document.close();
@@ -145,11 +147,73 @@ public class Printer {
 			e.printStackTrace();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
 		}
 
 		// TODO-rwichrowski Dodać bibliotekę log4J do logowania bugów
+	}
+
+	private Element createProductTable() {
+
+		PdfPTable productTabe = new PdfPTable(8);
+		productTabe.setWidthPercentage(100);
+		PdfPCell cellTable = new PdfPCell();
+		cellTable.setBackgroundColor(BaseColor.LIGHT_GRAY);
+		cellTable.setPhrase(new Phrase("Lp", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Nazwa towaru", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Cena jednostkowa", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Ilość", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Wartość netto", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Stavka Vat", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Kwota Vat", times9));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase("Wartość brutto", times9));
+		productTabe.addCell(cellTable);
+
+		cellTable.setBackgroundColor(null);
+		for (Item item : model.getItems()) {
+			if (item.getAmount() == 0) {
+				System.err.println("dddddddddddddddddddd");
+				break;
+			}
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getLp()), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(item.getName(), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getPrice()), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getAmount()), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getNetValue()), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getTax()), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getTaxValue()), times9));
+			productTabe.addCell(cellTable);
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getGrossValue()), times9));
+			productTabe.addCell(cellTable);
+		}
+		PdfPCell emptyCell = new PdfPCell();
+		emptyCell.setBorder(0);
+		productTabe.addCell(emptyCell);
+		productTabe.addCell(emptyCell);
+		productTabe.addCell(emptyCell);
+		productTabe.addCell(emptyCell);
+		cellTable.setPhrase(new Phrase(String.valueOf(model.getGlobalNetValue()), times14));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase(Item.getTaxString(), times14));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase(String.valueOf(model.getGlobalTaxValue()), times14));
+		productTabe.addCell(cellTable);
+		cellTable.setPhrase(new Phrase(String.valueOf(model.getGlobalGrossValue()), times14));
+		productTabe.addCell(cellTable);
+
+		return productTabe;
 	}
 
 	public void setModel(InvoiceModel model) {
