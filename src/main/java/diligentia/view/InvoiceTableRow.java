@@ -18,9 +18,9 @@ public class InvoiceTableRow implements PropertyChangeListener {
     private NumberFormat intFormat;
 
     private JTextField nameField;
-    private JFormattedTextField priceField;
-    private JFormattedTextField amountField;
-    private JFormattedTextField netValueField;
+    private JTextFieldChange priceField;
+    private JTextFieldChange amountField;
+    private JTextFieldChange netValueField;
     private JTextField taxField;
     private JFormattedTextField taxValueField;
     private JFormattedTextField grossValueField;
@@ -43,15 +43,15 @@ public class InvoiceTableRow implements PropertyChangeListener {
 
         nameField = new JTextField();
 
-        priceField = new JFormattedTextField(doubleFormat);
+        priceField = new JTextFieldChange(doubleFormat, item.setPrice());
         priceField.setValue(item.getPrice());
         priceField.addPropertyChangeListener("value", this);
 
-        amountField = new JFormattedTextField(intFormat);
+        amountField = new JTextFieldChange(intFormat);
         amountField.setValue(item.getAmount());
         amountField.addPropertyChangeListener("value", this);
 
-        netValueField = new JFormattedTextField(doubleFormat);
+        netValueField = new JTextFieldChange(doubleFormat);
         netValueField.setValue(item.getNetValue());
         netValueField.addPropertyChangeListener("value", this);
         netValueField.setEditable(false);

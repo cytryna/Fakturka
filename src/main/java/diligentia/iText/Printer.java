@@ -178,7 +178,6 @@ public class Printer {
 		cellTable.setBackgroundColor(null);
 		for (Item item : model.getItems()) {
 			if (item.getAmount() == 0) {
-				System.err.println("dddddddddddddddddddd");
 				break;
 			}
 			cellTable.setPhrase(new Phrase(String.valueOf(item.getLp()), times9));
