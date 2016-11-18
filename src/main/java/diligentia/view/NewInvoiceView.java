@@ -177,6 +177,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     private void refreshModel() {
         invoiceModel.setCity(cityTextField.getText());
         invoiceModel.setDate(DateUtils.asLocalDate((Date) dateTextField.getValue()));
+        tablePanel.refreshModel();
     }
 
 

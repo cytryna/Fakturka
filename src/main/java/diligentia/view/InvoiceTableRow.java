@@ -18,9 +18,9 @@ public class InvoiceTableRow implements PropertyChangeListener {
     private NumberFormat intFormat;
 
     private JTextField nameField;
-    private JTextFieldChange priceField;
-    private JTextFieldChange amountField;
-    private JTextFieldChange netValueField;
+    private JFormattedTextField priceField;
+    private JFormattedTextField amountField;
+    private JFormattedTextField netValueField;
     private JTextField taxField;
     private JFormattedTextField taxValueField;
     private JFormattedTextField grossValueField;
@@ -43,15 +43,15 @@ public class InvoiceTableRow implements PropertyChangeListener {
 
         nameField = new JTextField();
 
-        priceField = new JTextFieldChange(doubleFormat, item.setPrice());
+        priceField = new JFormattedTextField(doubleFormat);
         priceField.setValue(item.getPrice());
         priceField.addPropertyChangeListener("value", this);
 
-        amountField = new JTextFieldChange(intFormat);
+        amountField = new JFormattedTextField(intFormat);
         amountField.setValue(item.getAmount());
         amountField.addPropertyChangeListener("value", this);
 
-        netValueField = new JTextFieldChange(doubleFormat);
+        netValueField = new JFormattedTextField(doubleFormat);
         netValueField.setValue(item.getNetValue());
         netValueField.addPropertyChangeListener("value", this);
         netValueField.setEditable(false);
@@ -78,6 +78,10 @@ public class InvoiceTableRow implements PropertyChangeListener {
         grossValueField.setValue(item.getGrossValue());
 
         refreshGlobalData();
+    }
+
+    public void refreshModel() {
+        item.setName(nameField.getText());
     }
 
     private void refreshGlobalData() {

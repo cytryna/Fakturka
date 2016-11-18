@@ -4,6 +4,9 @@ import static diligentia.util.GridBagConstraintsBuilder.bothConstraint;
 
 import java.awt.*;
 import java.text.NumberFormat;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 import javax.swing.*;
 import diligentia.model.InvoiceModel;
 import diligentia.model.Item;
@@ -16,6 +19,7 @@ public class TablePanel extends JPanel implements ViewObserver{
 	private JTextField globalTaxField;
 	private JFormattedTextField globalTaxValueField;
 	private JFormattedTextField globalGrossValueField;
+	private List<InvoiceTableRow> invoiceTableRows = new ArrayList<>();
 	private NumberFormat doubleFormat = NumberFormat.getNumberInstance();;
 
 	public TablePanel(InvoiceModel invoiceModel) {
@@ -58,6 +62,7 @@ public class TablePanel extends JPanel implements ViewObserver{
 
 		for (Item item : invoiceModel.getItems()) {
 			InvoiceTableRow tableRow = new InvoiceTableRow(invoiceModel.getItems().get(i), this);
+			invoiceTableRows.add(tableRow);
 			add(tableRow.getNameField(), bothConstraint()
 					.withPosition(0, i + 1).withWeightX(columnWidthPercentage[0]).build());
 			add(tableRow.getPriceField(), bothConstraint()
@@ -94,5 +99,11 @@ public class TablePanel extends JPanel implements ViewObserver{
 		globalTaxValueField.setValue(invoiceModel.getGlobalTaxValue());
 		globalGrossValueField.setValue(invoiceModel.getGlobalGrossValue());
 		invoiceModel.firePropertyChange();
+	}
+
+	public void refreshModel() {
+		for (InvoiceTableRow invoiceTableRow : invoiceTableRows) {
+			invoiceTableRow.refreshModel();
+		}
 	}
 }
