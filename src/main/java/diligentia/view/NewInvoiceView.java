@@ -35,6 +35,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     private JFormattedTextField dateTextField;
     private JLabel grossValueLiteralLabel = new JLabel("słownie");
     private final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+    private JTextField numberTextField;
 
     public NewInvoiceView() {
 
@@ -78,7 +79,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     private JComponent createTitleWithNumber() {
         JPanel jPanel = new JPanel();
         jPanel.add(new JLabel("Faktura Vat"));
-        JTextField numberTextField = new JTextField(invoiceModel.getNumber());
+        numberTextField = new JTextField(invoiceModel.getNumber());
         Dimension dimension = new Dimension(70, 21);
         numberTextField.setPreferredSize(dimension);
         jPanel.add(numberTextField);
@@ -175,6 +176,7 @@ public class NewInvoiceView extends JPanel implements ViewObserver {
     }
 
     private void refreshModel() {
+        invoiceModel.setNumber(numberTextField.getText());
         invoiceModel.setCity(cityTextField.getText());
         invoiceModel.setDate(DateUtils.asLocalDate((Date) dateTextField.getValue()));
         tablePanel.refreshModel();

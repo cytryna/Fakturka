@@ -180,7 +180,7 @@ public class Printer {
 			if (item.getAmount() == 0) {
 				break;
 			}
-			cellTable.setPhrase(new Phrase(String.valueOf(item.getLp()), times9));
+			cellTable.setPhrase(new Phrase(String.valueOf(item.getOrdinal()), times9));
 			productTabe.addCell(cellTable);
 			cellTable.setPhrase(new Phrase(item.getName(), times9));
 			productTabe.addCell(cellTable);

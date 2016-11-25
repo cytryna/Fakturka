@@ -4,16 +4,22 @@ import java.io.Serializable;
 
 public class Item implements Serializable {
 
+    private static int COUNTER = 0;
+    private int ordinal;
     private String name;
     private Double price = Double.valueOf(0);
     private int amount;
-    private static final int tax = 22;////TODO-rwichrowski Przenieść to gdzieś w bardziej odpowiednie miejsce
-    private int lp;
+    private static final int tax = 23;////TODO-rwichrowski Przenieść to gdzieś w bardziej odpowiednie miejsce
 //   Double  getTaxValue
 //    private Double netValue;
 //    private Double grossValue;
 
 //    private Unit unit = Unit.SZTUK;
+
+
+    public Item() {
+        ordinal = ++COUNTER;
+    }
 
     public String getName() {
         return name;
@@ -67,11 +73,8 @@ public class Item implements Serializable {
         return tax + " %";
     }
 
-    public int getLp() {
-        return lp;
+    public int getOrdinal() {
+        return ordinal;
     }
 
-    public void setLp(int lp) {
-        this.lp = lp;
-    }
 }
