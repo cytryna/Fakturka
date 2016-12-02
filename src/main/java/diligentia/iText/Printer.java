@@ -24,8 +24,10 @@ public class Printer {
 	private static final String RESULT = System.getProperty("user.home") + File.separator
 		+ "fakturka/hello.pdf";
 	private InvoiceModel model;
-	private Font times14;
 	private Font times9;
+	private Font times12;
+	private Font times14;
+	private Font times14Bold;
 	private BaseFont times;
 	private DecimalFormat precision = new DecimalFormat("#0.00");
 
@@ -55,8 +57,10 @@ public class Printer {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		times14 = new Font(times, 14);
 		times9 = new Font(times, 9);
+		times12 = new Font(times, 12);
+		times14 = new Font(times, 14);
+		times14Bold = new Font(times, 14, Font.BOLD);
 	}
 
 	private void print() {
@@ -72,19 +76,20 @@ public class Printer {
 			table.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
 			table.setWidthPercentage(100);
 			Phrase salesman = new Phrase("SPRZEADWACA:\nWich-mot Edward Wichrowski\n09-500 Goostynin\nul. Szopena 4\n");
+			dodaj paddin do liniki z sprzedawcą
 			Phrase customer = new Phrase("NABYWCA\nDiligentia Radosław Wichrowski\n04-113 Warszawa\nul. Łukowska 1 m 156\nNIP: 971-060-22-10");
 
 			// PdfPCell emptyCell = new PdfPCell(salesman);
 			PdfPCell emptyCell = new PdfPCell();
 			emptyCell.setBorder(Rectangle.NO_BORDER);
-			table.addCell("Wystawiono dnia "+model.getDate()+", "+model.getCity());
+			table.addCell(createCellDateAndCity("Wystawiono dnia " + model.getDate() + ", " + model.getCity(), times9));
 			table.addCell(emptyCell);
 			table.addCell(emptyCell);
-			table.addCell("Faktura VAT nr "+model.getNumber());
+			table.addCell(new Phrase("Faktura VAT nr "+model.getNumber(), times14Bold));
 			table.addCell(emptyCell);
-			table.addCell("data sprzedaży "+model.getDate());//TODO-rwichrowski dodać date sprzadaży
+			table.addCell(new Phrase("Data sprzedaży "+model.getDate(), times12));//TODO-rwichrowski dodać date sprzadaży
 			table.addCell(emptyCell);
-			table.addCell("termin płatności "+model.getDate());//TODO-rwichrowski dodać termin płatności
+			table.addCell(new Phrase("Termin płatności "+model.getDate(), times12));//TODO-rwichrowski dodać termin płatności
 //			emptyCell.setLeading(20f, 0f);
 			table.addCell(emptyCell);
 			// emptyCell.setLeading(3f, 1.2f);
@@ -150,6 +155,13 @@ public class Printer {
 		}
 
 		// TODO-rwichrowski Dodać bibliotekę log4J do logowania bugów
+	}
+
+	private PdfPCell createCellDateAndCity(String string, Font times9) {
+		PdfPCell pdfPCell = new PdfPCell(new Phrase(string, times9));
+		pdfPCell.setBorder(Rectangle.NO_BORDER);
+		pdfPCell.setPaddingBottom(40);
+		return pdfPCell;
 	}
 
 	private Element createProductTable() {

@@ -16,7 +16,7 @@ public class InvoiceModel implements Serializable {
     private Company customer = new Company();
     private final Company salesman;
     private List<Item> items = new ArrayList<>();
-    private LocalDate date = LocalDate.now();
+    private LocalDate date = LocalDate.now(); //TODO-rwichrowski Dodać datę sprzedaży i termin płatności
     private String city = "Gostynin"; //TODO-rwichrowski Poprawić
 
     public InvoiceModel() {
